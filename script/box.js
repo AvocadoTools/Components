@@ -3,7 +3,7 @@ export default class AvocadoBox extends HTMLElement {
     super();
 
     const template = document.createElement( 'template' )
-    template.innerHTML = `
+    template.innerHTML = /* template */ `
       <style>
         :host {
           box-sizing: border-box;
@@ -11,6 +11,26 @@ export default class AvocadoBox extends HTMLElement {
           flex-direction: column;
           position: relative;
         }
+
+        :host( [concealed] ) {
+          visibility: hidden;
+        }       
+        
+        :host( [direction=row] ) {
+          flex-direction: row;
+        }
+
+        :host( [direction=row-reverse] ) {
+          flex-direction: row-reverse;
+        }
+
+        :host( [direction=column-reverse] ) {
+          flex-direction: column-reverse;
+        }                
+
+        :host( [hidden] ) {
+          display: none;
+        }        
       </style>
       <slot></slot>
     `;
@@ -24,23 +44,7 @@ export default class AvocadoBox extends HTMLElement {
   }
 
   // When things change
-  _render() {
-    // Host
-    this.style.alignItems = this.alignItems === null ? '' : this.alignItems;
-    this.style.backgroundColor = this.backgroundColor === null ? '' : this.backgroundColor;
-    this.style.display = this.hidden === true ? 'none' : '';            
-    this.style.flexBasis = this.grow === null ? '' : 0;
-    this.style.flexDirection = this.direction === null ? '' : this.direction;
-    this.style.flexGrow = this.grow === null ? '' : this.grow;
-    this.style.height = this.height === null ? '' : `${this.height}px`;
-    this.style.justifyContent = this.justifyContent === null ? '' : this.justifyContent;
-    this.style.marginBottom = this.marginBottom === null ? '' : `${this.marginBottom}px`;
-    this.style.marginLeft = this.marginLeft === null ? '' : `${this.marginLeft}px`;
-    this.style.marginRight = this.marginRight === null ? '' : `${this.marginRight}px`;
-    this.style.marginTop = this.marginTop === null ? '' : `${this.marginTop}px`;
-    this.style.visibility = this.concealed === true ? 'hidden' : '';
-    this.style.width = this.width === null ? '' : `${this.width}px`;
-  }
+  _render() {;}
 
   // Properties set before module loaded
   _upgrade( property ) {
@@ -51,44 +55,28 @@ export default class AvocadoBox extends HTMLElement {
     }    
   }    
 
-  // Default render
-  // No attributes set
+  // Setup
   connectedCallback() {
-    // Check data property before render
-    // May be assigned before module is loaded    
-    this._upgrade( 'align-items' );
-    this._upgrade( 'background-color' );    
-    this._upgrade( 'concealed' );    
-    this._upgrade( 'direction' );
-    this._upgrade( 'grow' );    
-    this._upgrade( 'height' );    
+    this._upgrade( 'concealed' );        
+    this._upgrade( 'data' );                
+    this._upgrade( 'direction' );                    
+    this._upgrade( 'disabled' );            
     this._upgrade( 'hidden' );    
-    this._upgrade( 'justify-content' );    
-    this._upgrade( 'margin-bottom' );
-    this._upgrade( 'margin-left' );    
-    this._upgrade( 'margin-right' );    
-    this._upgrade( 'margin-top' );    
-    this._upgrade( 'width' );
-
+    this._upgrade( 'icon' );        
+    this._upgrade( 'label' );        
+    this._render();
     this._render();
   }
 
   // Watched attributes
   static get observedAttributes() {
     return [
-      'align-items',
-      'background-color',
       'concealed',
       'direction',
-      'grow',
-      'height',
+      'disabled',
       'hidden',
-      'justify-content',
-      'margin-bottom',
-      'margin-left',
-      'margin-right',
-      'margin-top',
-      'width'
+      'icon',
+      'label'      
     ];
   }
 
@@ -98,9 +86,9 @@ export default class AvocadoBox extends HTMLElement {
     this._render();
   }
 
-  // Arbitrary storage
-  // For your convenience
-  // Not used in component    
+  // Properties
+  // Not reflected
+  // Array, Date, Object, null
   get data() {
     return this._data;
   }
@@ -109,40 +97,9 @@ export default class AvocadoBox extends HTMLElement {
     this._data = value;
   }
 
-  // Reflect attributes
-  // Return typed value (Number, Boolean, String, null)
-  get alignItems() {
-    if( this.hasAttribute( 'align-items' ) ) {
-      return this.getAttribute( 'align-items' );
-    }
-
-    return null;
-  }
-
-  set alignItems( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'align-items', value );
-    } else {
-      this.removeAttribute( 'align-items' );
-    }
-  }
-
-  get backgroundColor() {
-    if( this.hasAttribute( 'background-color' ) ) {
-      return this.getAttribute( 'background-color' );
-    }
-
-    return null;
-  }
-
-  set backgroundColor( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'background-color', value );
-    } else {
-      this.removeAttribute( 'background-color' );
-    }
-  }
-
+  // Attributes
+  // Reflected
+  // Boolean, Number, String, null
   get concealed() {
     return this.hasAttribute( 'concealed' );
   }
@@ -162,7 +119,7 @@ export default class AvocadoBox extends HTMLElement {
       this.removeAttribute( 'concealed' );
     }
   }
-
+  
   get direction() {
     if( this.hasAttribute( 'direction' ) ) {
       return this.getAttribute( 'direction' );
@@ -179,37 +136,25 @@ export default class AvocadoBox extends HTMLElement {
     }
   }
 
-  get grow() {
-    if( this.hasAttribute( 'grow' ) ) {
-      return parseInt( this.getAttribute( 'grow' ) );
-    }
-
-    return null;
+  get disabled() {
+    return this.hasAttribute( 'disabled' );
   }
 
-  set grow( value ) {
+  set disabled( value ) {
     if( value !== null ) {
-      this.setAttribute( 'grow', value );
+      if( typeof value === 'boolean' ) {
+        value = value.toString();
+      }
+
+      if( value === 'false' ) {
+        this.removeAttribute( 'disabled' );
+      } else {
+        this.setAttribute( 'disabled', '' );
+      }
     } else {
-      this.removeAttribute( 'grow' );
+      this.removeAttribute( 'disabled' );
     }
   }  
-
-  get height() {
-    if( this.hasAttribute( 'height' ) ) {
-      return parseInt( this.getAttribute( 'height' ) );
-    }
-
-    return null;
-  }
-
-  set height( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'height', value );
-    } else {
-      this.removeAttribute( 'height' );
-    }
-  }
 
   get hidden() {
     return this.hasAttribute( 'hidden' );
@@ -229,103 +174,39 @@ export default class AvocadoBox extends HTMLElement {
     } else {
       this.removeAttribute( 'hidden' );
     }
-  }
+  }   
 
-  get justifyContent() {
-    if( this.hasAttribute( 'justify-content' ) ) {
-      return this.getAttribute( 'justify-content' );
+  get icon() {
+    if( this.hasAttribute( 'icon' ) ) {
+      return this.getAttribute( 'icon' );
     }
 
     return null;
   }
 
-  set justifyContent( value ) {
+  set icon( value ) {
     if( value !== null ) {
-      this.setAttribute( 'justify-content', value );
+      this.setAttribute( 'icon', value );
     } else {
-      this.removeAttribute( 'justify-content' );
+      this.removeAttribute( 'icon' );
     }
-  }  
-
-  get marginBottom() {
-    if( this.hasAttribute( 'margin-bottom' ) ) {
-      return parseInt( this.getAttribute( 'margin-bottom' ) );
+  }   
+  
+  get label() {
+    if( this.hasAttribute( 'label' ) ) {
+      return this.getAttribute( 'label' );
     }
 
     return null;
   }
 
-  set marginBottom( value ) {
+  set label( value ) {
     if( value !== null ) {
-      this.setAttribute( 'margin-bottom', value );
+      this.setAttribute( 'label', value );
     } else {
-      this.removeAttribute( 'margin-bottom' );
+      this.removeAttribute( 'label' );
     }
-  }
-
-  get marginLeft() {
-    if( this.hasAttribute( 'margin-left' ) ) {
-      return parseInt( this.getAttribute( 'margin-left' ) );
-    }
-
-    return null;
-  }
-
-  set marginLeft( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'margin-left', value );
-    } else {
-      this.removeAttribute( 'margin-left' );
-    }
-  }
-
-  get marginRight() {
-    if( this.hasAttribute( 'margin-right' ) ) {
-      return parseInt( this.getAttribute( 'margin-right' ) );
-    }
-
-    return null;
-  }
-
-  set marginRight( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'margin-right', value );
-    } else {
-      this.removeAttribute( 'margin-right' );
-    }
-  }
-
-  get marginTop() {
-    if( this.hasAttribute( 'margin-top' ) ) {
-      return parseInt( this.getAttribute( 'margin-top' ) );
-    }
-
-    return null;
-  }
-
-  set marginTop( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'margin-top', value );
-    } else {
-      this.removeAttribute( 'margin-top' );
-    }
-  }  
-
-  get width() {
-    if( this.hasAttribute( 'width' ) ) {
-      return parseInt( this.getAttribute( 'width' ) );
-    }
-
-    return null;
-  }
-
-  set width( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'width', value );
-    } else {
-      this.removeAttribute( 'width' );
-    }
-  }
+  }     
 }
 
-window.customElements.define( 'avocado-box', AvocadoBox );
+window.customElements.define( 'adc-box', AvocadoBox );
