@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Designer</title>
+
+<!-- Icon -->
+<link rel="icon" href="avocado.ico"/>
+
+<!-- Google Fonts -->
+<!-- Plex for components -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"/> -->
+
+<!-- Application styles -->
+<link href="style/designer.css" rel="stylesheet"/>
+
+<!-- Application logic -->
+<script type="module" src="script/inspector/designer.js"></script>
+
+<!-- Components -->
+<script type="module" src="script/controls.js"></script>
+
+</head>
+<body>
+
+<!-- Property inspector -->
+<avocado-designer></avocado-designer>
+
+<!-- Application
+<script>
+// Rendering area for components
+const example = document.querySelector( 'div' );
+
+// Listen for change in component selection
+const inspector = document.querySelector( 'avocado-inspector' );
+inspector.addEventListener( 'change', ( evt ) => {
+  console.log( evt.detail );
+  example.children[0].remove();
+  render( evt.detail );
+} );
+
+// Listen for change in component property
+inspector.addEventListener( 'property', ( evt ) => {
+  console.log( evt.detail );
+  example.children[0][evt.detail.property] = evt.detail.value;
+    
+  if( evt.detail.property.indexOf( '--' ) === 0 ) {
+    if( evt.detail.type === 'size' ) {
+      if( evt.detail.value.trim().length === 0 ) {
+        example.children[0].style.removeProperty( evt.detail.property );    
+      } else {
+        example.children[0].style.setProperty( evt.detail.property, evt.detail.value + 'px' );    
+      }
+    } else {
+      example.children[0].style.setProperty( evt.detail.property, evt.detail.value );    
+    }
+  } else {
+    example.children[0][evt.detail.property] = evt.detail.value;    
+  }
+} );
+
+// Render selected component
+// Set properties along the way
+function render( component ) {  
+  const element = document.createElement( component.tag );
+  
+  for( let a = 0; a < component.attributes.length; a++ ) {
+    console.log( component.attributes[a].name + ': ' + component.attributes[a].value );
+
+    if( component.attributes[a].property.indexOf( '--'  ) === 0 ) {
+      if( component.attributes[a].type === 'size' ) {
+        if( component.attributes[a].value === null ) {
+          element.style.removeProperty( component.attributes[a].property );
+        } else {
+          element.style.setProperty( component.attributes[a].property, component.attributes[a].value + 'px' );
+        }
+      } else {
+        element.style.setProperty( component.attributes[a].property, component.attributes[a].value );
+      }
+    } else {
+      element[component.attributes[a].property] = component.attributes[a].value;
+    }
+  }
+
+  example.appendChild( element );  
+
+  // Special cases
+  if( component.tag === 'avocado-table' ) {
+    element.width = 800;
+    element.data = inspector.data;
+  } else if( component.tag === 'avocado-select' ) {
+    element.data = inspector.data;
+  }
+}
+
+// Dependencies loaded
+// Load component list
+window.addEventListener( 'load', ( evt ) => {
+  fetch( 'custom-elements.json' )
+  .then( ( response ) => response.json() )
+  .then( ( data ) => {
+    inspector.data = data;
+    render( data[0] );
+  } );
+} );
+</script>
+-->
+
+</body>
+</html>

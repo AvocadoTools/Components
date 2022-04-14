@@ -1,0 +1,1006 @@
+[{
+  "name": "Button",
+  "tag": "avocado-button",
+  "description": "Button with variations on kind and sizing.",
+  "icon": "button.svg",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"        
+  },{
+    "description": "Determines if the button can be interacted with by the user.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Used in flex box to stretch sizing.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Relative path to an icon to place on the button.",
+    "name": "icon",
+    "property": "icon",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Relative path to an icon to place on the button when in a disabled state. The icon attribute must be provided for this path to be applied.",
+    "name": "icon-disabled",
+    "property": "iconDisabled",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Relative path to an icon to place on the button when in is pressed by user interaction. The icon attribute must be provided for this path to be applied.",
+    "name": "icon-down",
+    "property": "iconDown",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Relative path to an icon to place on the button when in is hovered over by user interaction. The icon attribute must be provided for this path to be applied.",
+    "name": "icon-over",
+    "property": "iconOver",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Kind of button to present.",
+    "name": "kind",
+    "property": "kind",
+    "type": [
+      "danger",      
+      "ghost",      
+      "primary",
+      "secondary",
+      "tertiary"
+    ],
+    "value": "primary"
+  }, {
+    "description": "The label placed on the button.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Button"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Size of button to present. Refers specifically to the button height.",
+    "name": "size",
+    "property": "size",
+    "type": [
+      "default",
+      "field",
+      "small"
+    ],
+    "value": "default"
+  }, {
+    "description": "Applied to title attribute of underlying button implementation. Useful for native tooltips.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Checkbox",
+  "tag": "avocado-checkbox",
+  "description": "Button styled to behave like a checkbox.",
+  "attributes": [{
+    "description": "Select or not. Mirrors checked value of input.",
+    "name": "checked",
+    "property": "checked",
+    "type": "boolean",
+    "value": "false"        
+  }, {
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"        
+  }, {
+    "description": "Determines if the checkbox can be interacted with by the user.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"        
+  }, {
+    "description": "Control visibility but remove from the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"        
+  }, {
+    "description": "The content that sits next to the box.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Checkbox label"        
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Applied to title attribute of underlying button implementation. Useful for native tooltips.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }]
+}, {
+  "name": "Data Table",
+  "tag": "avocado-table",
+  "description": "Tabular display of content",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Used in flex box to stretch sizing.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Height of the label container. Also sets line height to same value for vertical centering.",
+    "name": "height",
+    "property": "height",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Theme for the background when used on darker surfaces.",
+    "name": "light",
+    "property": "light",
+    "type": "boolean",
+    "value": "true"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Date Picker",
+  "tag": "avocado-date-picker",
+  "description": "Pick a date, any date",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "No interaction allowed with the control.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Message to present in the case of an error.",
+    "name": "error",
+    "property": "error",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Used in flex box to stretch sizing.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Additional text used as instructions to the user.",
+    "name": "helper",
+    "property": "helper",
+    "type": "string",
+    "value": "Optional helper text"
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Label the component so the user knows how to use it.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Date picker label"
+  }, {
+    "description": "Toggle contrast to white background.",
+    "name": "light",
+    "property": "light",
+    "type": "boolean",
+    "value": "true"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Allow the field to be populated with readable content, but not allowed to be edited.",
+    "name": "readonly",
+    "property": "readonly",
+    "type": "boolean",
+    "value": false
+  }, {
+    "description": "Reflected in the tooltip of the field. Also used for accessibility.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Width of the control.",
+    "name": "width",
+    "property": "width",
+    "type": "number",
+    "value": 200
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Label",
+  "description": "A base formatted label.",  
+  "icon": "text.svg",    
+  "tag": "avocado-label",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Convenience for adjusting color when used inside components that can be functionally disabled.",
+    "name": "disabled",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Mark such that text cannot be selected in any way.",
+    "name": "internal",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "The textual content of the label to display.",
+    "name": "text",
+    "type": "string",
+    "value": "Label"    
+  }, {
+    "description": "Applied to title attribute of underlying button implementation. Useful for native tooltips.",
+    "name": "title",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Text in label will wrap by default. Truncation will limit to single line with ellipsis in accordance with containers width.",
+    "name": "truncate",
+    "type": "boolean",
+    "value": false
+  }],
+  "properties": [{
+    "description": "Arbitrary storage for values related to the function of the component.",
+    "name": "data",
+    "type": "object",
+    "value": null
+  }],
+  "styles": [{
+    "description": "Background color of the label.",
+    "name": "--background-color",
+    "type": "color",
+    "value": "transparent"    
+  }, {
+    "description": "Color of the font used in the label.",    
+    "name": "--color",
+    "type": "color",
+    "value": "#161616"
+  }, {
+    "description": "Type of cursor to be displayed with mouse interaction.",
+    "name": "--cursor",
+    "type": ["default", "not-allowed", "pointer"],
+    "value": "default"    
+  }, {
+    "description": "Type of cursor to be displayed with mouse interaction.",
+    "name": "--disabled-color",
+    "type": "color",
+    "value": "#c6c6c6"    
+  }, {
+    "description": "Font size of the label. Adjustable for headers, emphasis, etc.",
+    "name": "--font-size",
+    "type": "size",
+    "value": 14
+  }, {
+    "description": "Font weight of the label. Adjustable thickness for emphasis.",
+    "name": "--font-weight",
+    "type": "number",
+    "value": 400
+  }, {
+    "description": "Height of the label container. Also sets line height to same value for vertical centering.",
+    "name": "--height",
+    "type": "size",
+    "value": null
+  }, {
+    "description": "Alignment of the text within the label.",
+    "name": "--text-align",
+    "type": ["center", "left", "right"],
+    "value": "left"    
+  }],
+  "parts": [],
+  "slots": [],  
+  "events": []
+}, {
+  "name": "Link",
+  "tag": "avocado-link",
+  "description": "Button styled to appear as a link.",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "No interaction allowed with the control.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Font size in pixels of the content of the button.",
+    "name": "font-size",
+    "property": "fontSize",
+    "type": "number",
+    "value": 14    
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Use underline for link label.",
+    "name": "inline",
+    "property": "inline",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Content placed in the underlying button component.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Link"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Reflected in the tooltip of the button. Also used for accessibility.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Search",
+  "tag": "avocado-search",
+  "description": "Text input field styled to indicate search operation.",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Ignore set width and stretch to fill flex box container.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Set the background of the input to white for light theme.",
+    "name": "light",
+    "property": "light",
+    "type": "boolean",
+    "value": "true"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Textual content to place in field when not filled with other content.",
+    "name": "placeholder",
+    "property": "placeholder",
+    "type": "string",
+    "value": "Search"
+  }, {
+    "description": "One of sm, lg or xl. Case-sensitive.",
+    "name": "size",
+    "property": "size",
+    "type": [
+      "sm",
+      "lg",
+      "xl"
+    ],
+    "value": "xl"
+  }, {
+    "description": "Reflected in the tooltip of the button. Also used for accessibility.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Specific width of the input area in pixels. Grow will override.",
+    "name": "width",
+    "property": "width",
+    "type": "number",
+    "value": 200
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Select",
+  "tag": "avocado-select",
+  "description": "Presents a list of choices. Uses select element.",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Field to use on array of objects to display as options.",
+    "name": "data-field",
+    "property": "dataField",
+    "type": "string",
+    "value": "name"    
+  }, {
+    "description": "Make it such that the element cannot be interacted with by the user.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Error message to display in case of a problem.",
+    "name": "error",
+    "property": "error",
+    "type": "string",
+    "value": null    
+  }, {
+    "description": "Ignore set width and stretch to fill flex box container.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Additional instruction content placed below label but before select.",
+    "name": "helper",
+    "property": "helper",
+    "type": "string",
+    "value": "Optional helper text"
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "The label placed above the select element.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Select"
+  }, {
+    "description": "Set the background of the input to white for light theme.",
+    "name": "light",
+    "property": "light",
+    "type": "boolean",
+    "value": "true"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Content is readable, but the user cannot interact.",
+    "name": "readonly",
+    "property": "readonly",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Zero-based index of selected option.",
+    "name": "selected-index",
+    "property": "selectedIndex",
+    "type": "number",
+    "value": 0
+  }, {
+    "description": "Reflected in the tooltip of the button. Also used for accessibility.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Specific width of the input area in pixels. Grow will override.",
+    "name": "width",
+    "property": "width",
+    "type": "number",
+    "value": 200
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Tag",
+  "tag": "avocado-tag",
+  "description": "Colored area often used in filtering.",
+  "attributes": [{
+    "description": "Background color for the whole tag context.",
+    "name": "background-color",
+    "property": "backgroundColor",
+    "type": "color",
+    "value": "#e0e0e0"    
+  }, {
+    "description": "Control visibility but leave in the DOM.",
+    "name": "color",
+    "property": "color",
+    "type": "color",
+    "value": "#525252"    
+  }, {
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Make it such that the element cannot be interacted with by the user.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Background color used when clear button is hovered over by the mouse.",
+    "name": "filter-color",
+    "property": "filterColor",
+    "type": "color",
+    "value": "#c6c6c6"    
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "The text content with which to populate the element.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Label"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Content is readable, but the user cannot interact.",
+    "name": "readonly",
+    "property": "readonly",
+    "type": "boolean",
+    "value": "false"
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Text Input",
+  "tag": "avocado-input",
+  "description": "Presents a list of choices. Uses select element.",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Make it such that the element cannot be interacted with by the user.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Error message to display in case of a problem.",
+    "name": "error",
+    "property": "error",
+    "type": "string",
+    "value": null    
+  }, {
+    "description": "Ignore set width and stretch to fill flex box container.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Additional instruction content placed below label but before select.",
+    "name": "helper",
+    "property": "helper",
+    "type": "string",
+    "value": "Optional helper text"
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "The label placed above the select element.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Text input label"
+  }, {
+    "description": "Set the background of the input to white for light theme.",
+    "name": "light",
+    "property": "light",
+    "type": "boolean",
+    "value": "true"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Optionally make this field a password field with hidden content.",
+    "name": "password",
+    "property": "password",
+    "type": "boolean",
+    "value": false
+  }, {
+    "description": "Content placed in the field when no field value is present.",
+    "name": "placeholder",
+    "property": "placeholder",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Content is readable, but the user cannot interact.",
+    "name": "readonly",
+    "property": "readonly",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Reflected in the tooltip of the button. Also used for accessibility.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Specific width of the input area in pixels. Grow will override.",
+    "name": "value",
+    "property": "value",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Specific width of the input area in pixels. Grow will override.",
+    "name": "width",
+    "property": "width",
+    "type": "number",
+    "value": 200
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}, {
+  "name": "Text Area",
+  "tag": "avocado-textarea",
+  "description": "Presents a list of choices. Uses select element.",
+  "attributes": [{
+    "description": "Control visibility but leave in the DOM.",
+    "name": "concealed",
+    "property": "concealed",
+    "type": "boolean",
+    "value": "false"    
+  }, {
+    "description": "Make it such that the element cannot be interacted with by the user.",
+    "name": "disabled",
+    "property": "disabled",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Error message to display in case of a problem.",
+    "name": "error",
+    "property": "error",
+    "type": "string",
+    "value": null    
+  }, {
+    "description": "Ignore set width and stretch to fill flex box container.",
+    "name": "grow",
+    "property": "grow",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Additional instruction content placed below label but before select.",
+    "name": "helper",
+    "property": "helper",
+    "type": "string",
+    "value": "Optional helper text"
+  }, {
+    "description": "Control visibility and do not leave in the DOM.",
+    "name": "hidden",
+    "property": "hidden",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "The label placed above the select element.",
+    "name": "label",
+    "property": "label",
+    "type": "string",
+    "value": "Text area label"
+  }, {
+    "description": "Set the background of the input to white for light theme.",
+    "name": "light",
+    "property": "light",
+    "type": "boolean",
+    "value": "true"
+  }, {
+    "description": "Apply spacing to the bottom of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-bottom",
+    "property": "marginBottom",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the left of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-left",
+    "property": "marginLeft",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the right of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-right",
+    "property": "marginRight",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Apply spacing to the top of the underlying button implementation in order to nudge in place for pixel perfection.",
+    "name": "margin-top",
+    "property": "marginTop",
+    "type": "number",
+    "value": null
+  }, {
+    "description": "Content placed in the field when no field value is present.",
+    "name": "placeholder",
+    "property": "placeholder",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Content is readable, but the user cannot interact.",
+    "name": "readonly",
+    "property": "readonly",
+    "type": "boolean",
+    "value": "false"
+  }, {
+    "description": "Reflected in the tooltip of the button. Also used for accessibility.",
+    "name": "title",
+    "property": "title",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Specific width of the input area in pixels. Grow will override.",
+    "name": "value",
+    "property": "value",
+    "type": "string",
+    "value": null
+  }, {
+    "description": "Specific width of the input area in pixels. Grow will override.",
+    "name": "width",
+    "property": "width",
+    "type": "number",
+    "value": 200
+  }],
+  "properties": [],
+  "events": [],
+  "slots": []
+}]  

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Mobile -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Testing</title>
+
+<!-- Icon -->
+<link rel="icon" href="avocado.ico"/>
+
+<!-- Google Font -->
+<!-- IBM Plex Sans (400, 500) -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+
+<!-- Application styles -->
+<style>
+  body {
+    align-items: center;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+</style>
+
+<!-- Application controls -->
+<script type="module" src="script/controls.js"></script>
+<script src="script/collection.js"></script>
+
+</head>
+<body>
+
+<script>
+let data = [
+  {first: 'Kevin', last: 'Hoyt', age: 47},
+  {first: 'Marna', last: 'Hoyt', age: 45},
+  {first: 'Paige', last: 'Hoyt', age: 16}
+]
+
+function find( item ) {
+  let index = null;
+
+  for( let d = 0; d < data.length; d++ ) {
+    const keys = Object.keys( data[d] );
+    let match = true;
+
+    for( let k = 0; k < keys.length; k++ ) {
+      if( item[keys[k]] !== data[d][keys[k]] ) {
+        match = false;
+        break;
+      }
+    }
+
+    if( match ) {
+      index = d;
+      break;
+    }
+  }
+
+  console.log( index );  
+}
+
+find( {
+  first: 'Kevin',
+  last: 'Hoyt',
+  age: 45
+} );
+</script>
+
+</body>
+</html>
