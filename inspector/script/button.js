@@ -3,10 +3,8 @@ export default class AvocadoButton extends HTMLElement {
     super();
 
     const template = document.createElement( 'template' )
-    template.innerHTML = `
+    template.innerHTML = /* template */ `
       <style>
-        @import url( 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap' );
-
         :host {
           box-sizing: border-box;
           display: block;
@@ -176,80 +174,20 @@ export default class AvocadoButton extends HTMLElement {
           cursor: not-allowed;
         }        
       </style>
-      <button></button>
+      <button part="button" type="button">
+        <slot></slot>
+      </button>
     `;
 
     // Properties
     this._data = null;
-    this._focus = false;
 
     // Root
     const shadowRoot = this.attachShadow( {mode: 'open'} );
     shadowRoot.appendChild( template.content.cloneNode( true ) );
 
-    // Touch
-    const touch = ( 'ontouchstart' in document.documentElement ) ? true : false;    
-
     // Elements
-    // Event listeners for icon management
     this.$button = shadowRoot.querySelector( 'button' );
-    this.$button.addEventListener( 'blur', ( evt ) => this.doBlur( evt ) );                
-    this.$button.addEventListener( 'focus', ( evt ) => this.doFocus( evt ) );            
-    this.$button.addEventListener( touch ? 'touchstart' : 'mousedown', ( evt ) => this.doDown( evt ) );        
-    this.$button.addEventListener( 'mouseout', ( evt ) => this.doOut( evt ) );    
-    this.$button.addEventListener( 'mouseover', ( evt ) => this.doOver( evt ) );
-    this.$button.addEventListener( touch ? 'touchend' : 'mouseup', ( evt ) => this.doOver( evt ) );            
-  }
-
-  // Down
-  doDown( evt ) {
-    if( this.icon !== null ) {
-      if( this.iconDown !== null ) {
-        this.$button.style.backgroundImage = `url( ${this.iconDown} )`;
-      } else {
-        this.$button.style.backgroundImage = `url( ${this.icon} )`;
-      }
-    }
-  }
-
-  // Not focused
-  doBlur( evt ) {
-    this._focus = false;
-    this.doOut( evt );
-  }
-
-  // Focused
-  doFocus( evt ) {
-    this._focus = true;
-  }
-
-  // Focus leaving
-  // Hover leaving
-  doOut( evt ) {
-    if( this.icon !== null ) {
-      if( this._focus ) {
-        if( this.iconOver !== null ) {
-          this.$button.style.backgroundImage = `url( ${this.iconOver} )`;
-        } else {
-          this.$button.style.backgroundImage = `url( ${this.icon} )`;
-        }
-      } else {
-        this.$button.style.backgroundImage = `url( ${this.icon} )`;
-      }
-    } else {
-      this.$button.style.backgroundImage = '';
-    }
-  }
-
-  // Hover
-  doOver( evt ) {
-    if( this.icon !== null ) {
-      if( this.iconOver !== null ) {
-        this.$button.style.backgroundImage = `url( ${this.iconOver} )`;
-      } else {
-        this.$button.style.backgroundImage = `url( ${this.icon} )`;
-      }
-    }
   }
 
   // When things change
@@ -269,7 +207,8 @@ export default class AvocadoButton extends HTMLElement {
     this.$button.innerText = this.label === null ? '' : this.label;
   }
 
-  // Properties set before module loaded
+  // Promote properties
+  // Values may be set before module load
   _upgrade( property ) {
     if( this.hasOwnProperty( property ) ) {
       const value = this[property];
@@ -278,23 +217,15 @@ export default class AvocadoButton extends HTMLElement {
     }    
   }  
 
-  // Default render
-  // No attributes set
+  // Setup
   connectedCallback() {
-    // Check data property before render
-    // May be assigned before module is loaded    
     this._upgrade( 'concealed' );
+    this._upgrade( 'data' );
     this._upgrade( 'disabled' );
     this._upgrade( 'hidden' );    
-    this._upgrade( 'icon' );    
-    this._upgrade( 'iconDisabled' );    
-    this._upgrade( 'iconDown' );    
-    this._upgrade( 'iconOver' );    
     this._upgrade( 'kind' );    
-    this._upgrade( 'label' );    
     this._upgrade( 'size' );    
     this._upgrade( 'title' );        
-
     this._render();
   }
 
@@ -304,12 +235,7 @@ export default class AvocadoButton extends HTMLElement {
       'concealed',
       'disabled',
       'hidden',
-      'icon',
-      'icon-disabled',
-      'icon-down',
-      'icon-over',
       'kind',
-      'label',
       'size',
       'title'
     ];
@@ -321,9 +247,9 @@ export default class AvocadoButton extends HTMLElement {
     this._render();
   }
 
-  // Arbitrary storage
-  // For your convenience
-  // Not used in component  
+  // Properties
+  // Not reflected
+  // Array, Date, Object, null 
   get data() {
     return this._data;
   }
@@ -332,8 +258,9 @@ export default class AvocadoButton extends HTMLElement {
     this._data = value;
   }
 
-  // Reflect attributes
-  // Return typed value (Number, Boolean, String, null)
+  // Attributes
+  // Reflected
+  // Boolean, Number, String, null
   get concealed() {
     return this.hasAttribute( 'concealed' );
   }
@@ -394,70 +321,6 @@ export default class AvocadoButton extends HTMLElement {
     }
   }
 
-  get icon() {
-    if( this.hasAttribute( 'icon' ) ) {
-      return this.getAttribute( 'icon' );
-    }
-
-    return null;
-  }
-
-  set icon( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'icon', value );
-    } else {
-      this.removeAttribute( 'icon' );
-    }
-  }  
-
-  get iconDisabled() {
-    if( this.hasAttribute( 'icon-disabled' ) ) {
-      return this.getAttribute( 'icon-disabled' );
-    }
-
-    return null;
-  }
-
-  set iconDisabled( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'icon-disabled', value );
-    } else {
-      this.removeAttribute( 'icon-disabled' );
-    }
-  }    
-
-  get iconDown() {
-    if( this.hasAttribute( 'icon-down' ) ) {
-      return this.getAttribute( 'icon-down' );
-    }
-
-    return null;
-  }
-
-  set iconDown( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'icon-down', value );
-    } else {
-      this.removeAttribute( 'icon-down' );
-    }
-  }  
-
-  get iconOver() {
-    if( this.hasAttribute( 'icon-over' ) ) {
-      return this.getAttribute( 'icon-over' );
-    }
-
-    return null;
-  }
-
-  set iconOver( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'icon-over', value );
-    } else {
-      this.removeAttribute( 'icon-over' );
-    }
-  }  
-
   get kind() {
     if( this.hasAttribute( 'kind' ) ) {
       return this.getAttribute( 'kind' );
@@ -473,22 +336,6 @@ export default class AvocadoButton extends HTMLElement {
       this.removeAttribute( 'kind' );
     }
   }  
-
-  get label() {
-    if( this.hasAttribute( 'label' ) ) {
-      return this.getAttribute( 'label' );
-    }
-
-    return null;
-  }
-
-  set label( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'label', value );
-    } else {
-      this.removeAttribute( 'label' );
-    }
-  }        
 
   get size() {
     if( this.hasAttribute( 'size' ) ) {
@@ -523,4 +370,4 @@ export default class AvocadoButton extends HTMLElement {
   }      
 }
 
-window.customElements.define( 'avocado-button', AvocadoButton );
+window.customElements.define( 'adc-button', AvocadoButton );

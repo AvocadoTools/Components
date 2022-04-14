@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Avocado web components suite.">
+
+    <title>Components</title>
+
+    <style>
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: 400;
+        src: url( 'fonts/sans/IBMPlexSans-Regular.woff2' ) format( 'woff2' );
+      }
+
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: 500;
+        src: url( 'fonts/sans/IBMPlexSans-Medium.woff2' ) format( 'woff2' );
+      }      
+
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: 600;
+        src: url( 'fonts/sans/IBMPlexSans-SemiBold.woff2' ) format( 'woff2' );
+      }            
+
+      body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <adc-box direction="row">
+      <adc-button title="Primary">Button</adc-button>      
+      <adc-button kind="secondary" title="Secondary">Button</adc-button>      
+      <adc-button kind="tertiary" title="Tertiary">Button</adc-button>      
+      <adc-button kind="danger" title="Danger">Button</adc-button>      
+      <adc-button kind="ghost" title="Ghost">Button</adc-button>      
+    </adc-box>
+
+    <script src="avocado.js" type="module"></script>
+
+  </body>
+</html>

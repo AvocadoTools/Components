@@ -1,0 +1,11 @@
+{
+  "name": "controls",
+  "version": "1.0.0",
+  "description": "UI controls in the theme of IBM Carbon.",
+  "scripts": {
+    "start": "php -S localhost:8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
