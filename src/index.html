@@ -8,6 +8,8 @@
 
     <title>Components</title>
 
+    <link rel="icon" href="avocado.ico">
+
     <style>
       @font-face {
         font-family: 'IBM Plex Sans';
@@ -28,6 +30,7 @@
       }            
 
       body {
+        background-color: #f4f4f4;
         display: flex;
         flex-direction: column;
         margin: 0;
@@ -38,13 +41,21 @@
   </head>
   <body>
 
-    <adc-box direction="row">
+    <adc-hbox>
       <adc-button title="Primary">Button</adc-button>      
       <adc-button kind="secondary" title="Secondary">Button</adc-button>      
       <adc-button kind="tertiary" title="Tertiary">Button</adc-button>      
       <adc-button kind="danger" title="Danger">Button</adc-button>      
       <adc-button kind="ghost" title="Ghost">Button</adc-button>      
-    </adc-box>
+    </adc-hbox>
+
+    <adc-label>Label</adc-label>
+
+    <adc-textarea 
+      hint="A text area hint for you" 
+      label="Text Area Label" 
+      placeholder="Text area: Placeholder">
+    </adc-textarea>
 
     <script src="avocado.js" type="module"></script>
 
