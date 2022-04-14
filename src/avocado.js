@@ -5,4 +5,4 @@ import AvocadoVBox from './containers/vbox.js';
 
 import AvocadoButton from './controls/button.js';
 import AvocadoLabel from './controls/label.js';
-import AvocadoTextArea from './controls/textarea.js'
+import AvocadoTextArea from './controls/text-area.js'

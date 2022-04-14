@@ -479,4 +479,4 @@ export default class AvocadoTextArea extends HTMLElement {
   }  
 }
 
-window.customElements.define( 'adc-textarea', AvocadoTextArea );
+window.customElements.define( 'adc-text-area', AvocadoTextArea );
