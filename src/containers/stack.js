@@ -1,4 +1,4 @@
-export default class Stack extends HTMLElement {
+export default class AvocadoStack extends HTMLElement {
   constructor() {
     super();
 
@@ -146,4 +146,4 @@ export default class Stack extends HTMLElement {
   }          
 }
 
-window.customElements.define( 'nc-stack', Stack );
+window.customElements.define( 'adc-stack', AvocadoStack );

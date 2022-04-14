@@ -1,4 +1,4 @@
-export default class VBox extends HTMLElement {
+export default class AvocadoVBox extends HTMLElement {
   constructor() {
     super();
 
@@ -179,4 +179,4 @@ export default class VBox extends HTMLElement {
   }     
 }
 
-window.customElements.define( 'nc-vbox', VBox );
+window.customElements.define( 'adc-vbox', AvocadoVBox );
