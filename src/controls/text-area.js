@@ -200,6 +200,7 @@ export default class AvocadoTextArea extends HTMLElement {
     this._upgrade( 'hint' );    
     this._upgrade( 'invalid' );    
     this._upgrade( 'label' );    
+    this._upgrade( 'light' );    
     this._upgrade( 'placeholder' );    
     this._upgrade( 'readonly' );    
     this._upgrade( 'title' );    
