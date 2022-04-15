@@ -50,6 +50,7 @@ export default class AvocadoVBox extends HTMLElement {
     this._upgrade( 'data' );                
     this._upgrade( 'disabled' );            
     this._upgrade( 'hidden' );    
+    this._upgrade( 'hint' );        
     this._upgrade( 'icon' );        
     this._upgrade( 'label' );        
     this._render();
@@ -61,6 +62,7 @@ export default class AvocadoVBox extends HTMLElement {
       'concealed',
       'disabled',
       'hidden',
+      'hint',
       'icon',
       'label'
     ];
@@ -145,6 +147,22 @@ export default class AvocadoVBox extends HTMLElement {
       this.removeAttribute( 'hidden' );
     }
   }   
+
+  get hint() {
+    if( this.hasAttribute( 'hint' ) ) {
+      return this.getAttribute( 'hint' );
+    }
+
+    return null;
+  }
+
+  set hint( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'hint', value );
+    } else {
+      this.removeAttribute( 'hint' );
+    }
+  }      
 
   get icon() {
     if( this.hasAttribute( 'icon' ) ) {
