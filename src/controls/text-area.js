@@ -140,7 +140,7 @@ export default class AvocadoTextArea extends HTMLElement {
           background-color: transparent;
         }
       </style>
-      <div>
+      <div part="heading">
         <p part="label"></p>      
         <p part="count"></p>      
       </div>
@@ -165,6 +165,16 @@ export default class AvocadoTextArea extends HTMLElement {
       this.value = this.$textarea.value.trim().length === 0 ? null : this.$textarea.value;
     } );
     this.$error = shadowRoot.querySelector( 'p[part=error]' );
+  }
+
+  focus( wait = true ) {
+    if( wait ) {
+      window.requestAnimationFrame( () => {
+        this.$textarea.focus();
+      } );
+    } else {
+      this.$textarea.focus();
+    }
   }
 
   // When things change

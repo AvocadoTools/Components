@@ -173,7 +173,7 @@ export default class AvocadoInput extends HTMLElement {
           background-position: right 48px center;
         }
       </style>
-      <div>
+      <div part="heading">
         <p part="label"></p>
         <p part="count"></p>
       </div>
