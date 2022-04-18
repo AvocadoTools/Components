@@ -38,6 +38,10 @@ export default class AvocadoTag extends HTMLElement {
           width: 24px;
         }
 
+        button:hover {
+          background-color: #c6c6c6;
+        }
+
         p {
           color: #393939;
           cursor: default;
@@ -50,38 +54,47 @@ export default class AvocadoTag extends HTMLElement {
         }
 
         :host( [color=red] ) { background-color: #ffd7d9; }
+        :host( [color=red] ) button:hover { background-color: #ffb3b8; }
         :host( [color=red] ) p { color: #750e13; }
         :host( [color=red] ) polygon { fill: #750e13; }
 
         :host( [color=magenta] ) { background-color: #ffd6e8; }
+        :host( [color=magenta] ) button:hover { background-color: #ffafd2; }
         :host( [color=magenta] ) p { color: #740937; }
         :host( [color=magenta] ) polygon { fill: #740937; }
 
         :host( [color=purple] ) { background-color: #e8daff; }
+        :host( [color=purple] ) button:hover { background-color: #d4bbff; }
         :host( [color=purple] ) p { color: #491d8b; }
         :host( [color=purple] ) polygon { fill: #491d8b; }
 
         :host( [color=blue] ) { background-color: #d0e2ff; }
+        :host( [color=blue] ) button:hover { background-color: #a6c8ff; }
         :host( [color=blue] ) p { color: #002d9c; }
         :host( [color=blue] ) polygon { fill: #002d9c; }
 
         :host( [color=cyan] ) { background-color: #bae6ff; }
+        :host( [color=cyan] ) button:hover { background-color: #82cfff; }
         :host( [color=cyan] ) p { color: #003a6d; }
         :host( [color=cyan] ) polygon { fill: #003a6d; }
 
         :host( [color=teal] ) { background-color: #9ef0f0; }
+        :host( [color=teal] ) button:hover { background-color: #3ddbd9; }
         :host( [color=teal] ) p { color: #004144; }
         :host( [color=teal] ) polygon { fill: #004144; }
 
         :host( [color=green] ) { background-color: #a7f0ba; }
+        :host( [color=green] ) button:hover { background-color: #6fdc8c; }
         :host( [color=green] ) p { color: #044317; }
         :host( [color=green] ) polygon { fill: #044317; }
 
         :host( [color=cool] ) { background-color: #dde1e6; }
+        :host( [color=cool] ) button:hover { background-color: #c1c7cd; }
         :host( [color=cool] ) p { color: #343a3f; }
         :host( [color=cool] ) polygon { fill: #343a3f; }
 
         :host( [color=warm] ) { background-color: #e5e0df; }
+        :host( [color=warm] ) button:hover { background-color: #cac5c4; }
         :host( [color=warm] ) p { color: #3c3838; }
         :host( [color=warm] ) polygon { fill: #3c3838; }
 
@@ -97,6 +110,7 @@ export default class AvocadoTag extends HTMLElement {
 
         :host( [disabled] ) { background-color: #f4f4f4; cursor: not-allowed; }
         :host( [disabled] ) button { cursor: not-allowed; }
+        :host( [disabled] ) button:hover { background: none; }        
         :host( [disabled] ) p { color: #c6c6c6; cursor: not-allowed; }
         :host( [disabled] ) polygon { fill: #c6c6c6; }
       </style>
