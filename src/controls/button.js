@@ -198,6 +198,9 @@ export default class AvocadoButton extends HTMLElement {
     } else {
       this.$button.title = this.title;      
     }
+
+    if( this.label !== null )
+      this.innerText = this.label;
   }
 
   // Promote properties
@@ -217,6 +220,7 @@ export default class AvocadoButton extends HTMLElement {
     this._upgrade( 'disabled' );
     this._upgrade( 'hidden' );    
     this._upgrade( 'kind' );    
+    this._upgrade( 'label' );    
     this._upgrade( 'size' );    
     this._upgrade( 'title' );        
     this._render();
@@ -229,6 +233,7 @@ export default class AvocadoButton extends HTMLElement {
       'disabled',
       'hidden',
       'kind',
+      'label',
       'size',
       'title'
     ];
@@ -327,6 +332,22 @@ export default class AvocadoButton extends HTMLElement {
       this.setAttribute( 'kind', value );
     } else {
       this.removeAttribute( 'kind' );
+    }
+  }  
+
+  get label() {
+    if( this.hasAttribute( 'label' ) ) {
+      return this.getAttribute( 'label' );
+    }
+
+    return null;
+  }
+
+  set label( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'label', value );
+    } else {
+      this.removeAttribute( 'label' );
     }
   }  
 
