@@ -72,6 +72,10 @@ export default class AvocadoLabel extends HTMLElement {
     } else {
       this.$label.title = this.title;
     }
+
+    if( this.innerText.trim().length === 0 ) {
+      this.innerText = this.text === null ? '' : this.text;
+    }
   }
 
   // Promote properties
@@ -91,6 +95,7 @@ export default class AvocadoLabel extends HTMLElement {
     this._upgrade( 'disabled' );        
     this._upgrade( 'hidden' );    
     this._upgrade( 'ignore' );        
+    this._upgrade( 'text' );        
     this._upgrade( 'title' );    
     this._upgrade( 'truncate' );    
     this._render();
@@ -103,6 +108,7 @@ export default class AvocadoLabel extends HTMLElement {
       'disabled',
       'hidden',
       'ignore',
+      'text',
       'title',
       'truncate'
     ];
@@ -207,6 +213,22 @@ export default class AvocadoLabel extends HTMLElement {
       this.removeAttribute( 'ignore' );
     }
   }  
+
+  get text() {
+    if( this.hasAttribute( 'text' ) ) {
+      return this.getAttribute( 'text' );
+    }
+
+    return null;
+  }
+
+  set text( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'text', value );
+    } else {
+      this.removeAttribute( 'text' );
+    }
+  }      
 
   get title() {
     if( this.hasAttribute( 'title' ) ) {
