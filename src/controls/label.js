@@ -73,9 +73,8 @@ export default class AvocadoLabel extends HTMLElement {
       this.$label.title = this.title;
     }
 
-    if( this.text !== null ) {
-      this.innerText = this.text === null ? '' : this.text;
-    }
+    if( this.text !== null )
+      this.innerText = this.text;
   }
 
   // Promote properties
