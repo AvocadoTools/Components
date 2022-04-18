@@ -141,6 +141,10 @@ export default class AvocadoTag extends HTMLElement {
 
   // When things change
   _render() {
+    if( this.innerText.trim().length === 0 ) {
+      this.innerText = this.label === null ? '' : this.label;
+    }
+    
     this.$button.disabled = this.disabled;
 
     if( this.title === null ) {
@@ -168,6 +172,7 @@ export default class AvocadoTag extends HTMLElement {
     this._upgrade( 'disabled' );
     this._upgrade( 'filter' );
     this._upgrade( 'hidden' );
+    this._upgrade( 'label' );    
     this._upgrade( 'title' );
     this._render();
   }
@@ -300,6 +305,22 @@ export default class AvocadoTag extends HTMLElement {
       this.removeAttribute( 'hidden' );
     }
   }
+
+  get label() {
+    if( this.hasAttribute( 'label' ) ) {
+      return this.getAttribute( 'label' );
+    }
+
+    return null;
+  }
+
+  set label( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'label', value );
+    } else {
+      this.removeAttribute( 'label' );
+    }
+  } 
 
   get title() {
     if( this.hasAttribute( 'title' ) ) {
