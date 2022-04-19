@@ -6,6 +6,7 @@ import AvocadoVBox from './containers/vbox.js';
 
 import AvocadoButton from './controls/button.js';
 import AvocadoCalendar from './controls/calendar.js';
+import AvocadoDatePicker from './controls/date-picker.js';
 import AvocadoLabel from './controls/label.js';
 import AvocadoInput from './controls/input.js'
 import AvocadoSearch from './controls/search.js';

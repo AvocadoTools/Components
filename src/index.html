@@ -53,6 +53,7 @@
     <adc-label text="Label Shortcut"></adc-label>    
 
     <adc-input 
+      error="Error message"
       hint="An input hint for you" 
       label="Input Label" 
       placeholder="Input: Placeholder">
@@ -91,7 +92,13 @@
       placeholder="Tag input: Placeholder">
     </adc-tag-input>
 
-    <adc-calendar></adc-calendar>
+    <adc-date-picker 
+      hint="A date picker hint for you" 
+      label="Date Picker Label">
+    </adc-date-picker>
+    
+    <!-- Related: -->
+    <!-- <adc-calendar></adc-calendar> -->
 
     <script src="avocado.js" type="module"></script>
 
