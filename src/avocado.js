@@ -10,4 +10,5 @@ import AvocadoInput from './controls/input.js'
 import AvocadoSearch from './controls/search.js';
 import AvocadoTab from './controls/tab.js';
 import AvocadoTag from './controls/tag.js';
+import AvocadoTagInput from './controls/tag-input.js';
 import AvocadoTextArea from './controls/text-area.js'
