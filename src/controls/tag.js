@@ -141,16 +141,12 @@ export default class AvocadoTag extends HTMLElement {
 
   // When things change
   _render() {
+    this.$label.title = this.title === null ? '' : this.title;
+
     if( this.label !== null )
       this.innerText = this.label;
 
     this.$button.disabled = this.disabled;
-
-    if( this.title === null ) {
-      this.$button.removeAttribute( 'title' );
-    } else {
-      this.$button.title = this.title;
-    }
   }
 
   // Promote properties
