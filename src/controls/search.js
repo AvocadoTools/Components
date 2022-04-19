@@ -55,22 +55,23 @@ export default class AvocadoSearch extends HTMLElement {
           background: none; 
           background-color: #ffffff;
           background-image: url( /img/controls/search.svg );
-          background-position: left 14px center;          
+          background-position: left 12px center;          
           background-repeat: no-repeat;
-          background-size: 20px;                    
+          background-size: 16px;                    
           border: none;
+          border-bottom: solid 1px #8d8d8d;          
           border-radius: 0;
           box-sizing: border-box;          
           color: #161616;
           font-family: 'IBM Plex Sans', sans-serif;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 400;
-          height: 48px;       
-          min-height: 48px;             
+          height: 40px;       
+          min-height: 40px;             
           margin: 0;
           outline: solid 2px transparent;
           outline-offset: -2px;
-          padding: 0 48px 0 48px;
+          padding: 0 40px 0 40px;
           position: relative;
           text-rendering: optimizeLegibility;
           width: 100%;
@@ -98,17 +99,17 @@ export default class AvocadoSearch extends HTMLElement {
         }        
 
         :host( [size=lg] ) button {
-          height: 40px;
-          width: 40px;                    
+          height: 48px;
+          width: 48px;                    
         }        
 
         :host( [size=lg] ) input {
           background-position: left 16px center;
           background-size: 16px;                    
           font-size: 16px;
-          height: 40px;
-          min-height: 40px;      
-          padding: 0 40px 0 40px;              
+          height: 48px;
+          min-height: 48px;      
+          padding: 0 48px 0 48px;              
         }
 
         :host( [size=sm] ) button {
