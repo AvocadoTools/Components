@@ -81,6 +81,10 @@ export default class AvocadoTagInput extends HTMLElement {
         :host( [light] ) {
           background-color: transparent;
         }
+
+        :host( [size=xl] ) input {
+          height: 44px;
+        }
       </style>
       <label part="field">
         <div part="list"></div>
@@ -227,7 +231,8 @@ export default class AvocadoTagInput extends HTMLElement {
     this._upgrade( 'labelFunction' );                
     this._upgrade( 'placeholder' );        
     this._upgrade( 'sortFunction' );
-    this._upgrade( 'title' );
+    this._upgrade( 'size' );
+    this._upgrade( 'title' );    
     this._upgrade( 'value' );    
     this._render();
   }
@@ -240,6 +245,7 @@ export default class AvocadoTagInput extends HTMLElement {
       'hidden',
       'label-field',
       'placeholder',
+      'size',
       'title'
     ];
   }
@@ -393,6 +399,22 @@ export default class AvocadoTagInput extends HTMLElement {
       this.removeAttribute( 'placeholder' );
     }
   } 
+
+  get size() {
+    if( this.hasAttribute( 'size' ) ) {
+      return this.getAttribute( 'size' );
+    }
+
+    return null;
+  }
+
+  set size( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'size', value );
+    } else {
+      this.removeAttribute( 'size' );
+    }
+  }    
 
   get title() {
     if( this.hasAttribute( 'title' ) ) {
