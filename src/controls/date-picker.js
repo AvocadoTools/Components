@@ -161,8 +161,23 @@ export default class AvocadoDatePicker extends HTMLElement {
     } );
     this.$button.addEventListener( 'click', () => {
       if( this.$calendar.hidden ) {
+        const box = this.getBoundingClientRect();
+        const button = this.$button.getBoundingClientRect();        
+
+        let top = ( button.top - box.top ) + button.height;
+
         this.$calendar.value = this.value;
         this.$calendar.hidden = false;
+
+        window.requestAnimationFrame( () => {
+          const total = button.top + button.height + this.$calendar.clientHeight;
+
+          if( total > window.innerHeight ) {
+            top = top - button.height - this.$calendar.clientHeight;
+          }  
+
+          this.$calendar.style.top = top + 'px';                  
+        } );
       } else {
         this.$calendar.hidden = true;
       }
