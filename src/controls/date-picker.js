@@ -110,7 +110,7 @@ export default class AvocadoDatePicker extends HTMLElement {
         }
 
         :host( [invalid] ) button:after {
-          border: solid 2px red;
+          border: solid 2px #da1e28;
           bottom: -1px;
           content: '';
           left: 0;
@@ -120,7 +120,7 @@ export default class AvocadoDatePicker extends HTMLElement {
         }
 
         :host( [invalid] ) p[part=error] {
-          color: red;
+          color: #da1e28;
         }
 
         :host( [label] ) p[part=label] {
@@ -220,7 +220,8 @@ export default class AvocadoDatePicker extends HTMLElement {
     this._upgrade( 'error' );            
     this._upgrade( 'format' );                
     this._upgrade( 'hidden' );    
-    this._upgrade( 'hint' );        
+    this._upgrade( 'hint' );      
+    this._upgrade( 'invalid' );          
     this._upgrade( 'label' );        
     this._upgrade( 'value' );    
     this._render();
@@ -234,6 +235,7 @@ export default class AvocadoDatePicker extends HTMLElement {
       'format',
       'hidden',
       'hint',
+      'invalid',
       'label'
     ];
   }
