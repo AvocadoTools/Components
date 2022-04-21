@@ -79,6 +79,10 @@ export default class AvocadoCalendar extends HTMLElement {
           background-image: url( /img/controls/chevron-right.svg );
         }        
 
+        :host( [tabindex] ) div[part=heading] button {
+          outline: none;
+        }
+
         div[part=heading] p {
           color: #161616;
           cursor: default;

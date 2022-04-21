@@ -27,7 +27,12 @@ export default class AvocadoDatePicker extends HTMLElement {
         adc-calendar {
           background-color: #f4f4f4;
           box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.30 );
+          outline-offset: -1px;
           position: absolute;
+        }
+
+        adc-calendar:focus {
+          outline: solid 1px #0f62fe;                    
         }
 
         button {
@@ -41,20 +46,19 @@ export default class AvocadoDatePicker extends HTMLElement {
           display: flex;
           flex-direction: row;
           height: 40px;
+          outline-offset: -2px;                    
           padding: 0 4px 0 16px;
           position: relative;
           width: 100%;
         }
 
-        button:focus :after {
-          border: solid 2px #0f62fe;          
-          bottom: -1px;
-          content: '';
-          left: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
+        button:focus {
+          outline: solid 2px #0f62fe;          
         }
+
+        button:active {
+          outline: solid 2px #0f62fe;          
+        }        
 
         img {
           height: 16px;
@@ -109,14 +113,8 @@ export default class AvocadoDatePicker extends HTMLElement {
           display: block;
         }
 
-        :host( [invalid] ) button:after {
-          border: solid 2px #da1e28;
-          bottom: -1px;
-          content: '';
-          left: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
+        :host( [invalid] ) button {
+          outline: solid 2px #da1e28;
         }
 
         :host( [invalid] ) p[part=error] {
@@ -142,7 +140,7 @@ export default class AvocadoDatePicker extends HTMLElement {
         <img part="icon" src="/img/controls/calendar.svg">
       </button>
       <p part="error">Error</p>
-      <adc-calendar hidden></adc-calendar>
+      <adc-calendar hidden tabindex="-1"></adc-calendar>
     `;
 
     // Properties
@@ -156,10 +154,13 @@ export default class AvocadoDatePicker extends HTMLElement {
     // Elements
     this.$button = shadowRoot.querySelector( 'button' );
     this.$button.addEventListener( 'blur', ( evt ) => {
+      console.log( evt );
       if( evt.relatedTarget !== this.$calendar )
         this.$calendar.hidden = true;
     } );
     this.$button.addEventListener( 'click', () => {
+      this.$button.focus();
+
       if( this.$calendar.hidden ) {
         const box = this.getBoundingClientRect();
         const button = this.$button.getBoundingClientRect();        
