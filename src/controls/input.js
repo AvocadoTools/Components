@@ -58,7 +58,7 @@ export default class AvocadoInput extends HTMLElement {
           background-position: right 16px center;
           background-repeat: no-repeat;
           background-size: 16px;
-          background-color: #ffffff;
+          background-color: var( --input-background-color, #ffffff );
           border: none;
           border-bottom: solid 1px #8d8d8d;
           border-radius: 0;
@@ -175,7 +175,7 @@ export default class AvocadoInput extends HTMLElement {
       </style>
       <div part="heading">
         <p part="label"></p>
-        <p part="count"></p>
+        <slot name="count"></slot>
       </div>
       <p part="hint"></p>
       <input part="input" size="1" type="text">
