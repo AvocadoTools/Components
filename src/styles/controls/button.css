@@ -1,0 +1,141 @@
+adc-button[concealed] {
+  visibility: hidden;
+}
+
+adc-button[hidden] {
+  display: none;
+}
+
+adc-button::part( button ) {
+  background: none;
+  background-color: #0f62fe;          
+  background-position: right 16px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  border: none;
+  border: solid 1px transparent;
+  box-sizing: border-box;          
+  color: #ffffff;          
+  cursor: pointer;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  height: 48px;
+  margin: 0;
+  outline: solid 1px transparent;
+  outline-offset: -3px;
+  padding: 0 60px 0 12px;
+  text-align: left;
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
+  width: 100%;
+}
+
+adc-button[size=field]::part( button ) {
+  height: 40px;
+}
+
+adc-button[size=sm]::part( button ) {
+  height: 32px;  
+}
+
+adc-button[size=xl]::part( button ) {
+  height: 80px;
+}
+
+adc-button::part( button ):focus {
+  border-color: #0f62fe;
+  box-shadow: 
+    inset 0 0 0 1px #0f62fe,
+    inset 0 0 0 2px #ffffff;          
+}      
+
+adc-button::part( button ):hover {
+  background-color: #0353e9;
+}
+
+adc-button[kind=danger]::part( button ) {
+  background-color: #da1e28;
+  color: #ffffff;
+  padding: 0 60px 0 12px;          
+}
+
+adc-button[kind=danger]::part( button ):hover {
+  background-color: #bc1a22;          
+}
+
+adc-button[kind=danger]::part( button ):focus {
+  border-color: #0f62fe;
+  box-shadow: 
+    inset 0 0 0 1px #0f62fe,
+    inset 0 0 0 2px #ffffff;
+}
+
+adc-button[kind=ghost]::part( button ) {        
+  background-color: transparent;
+  color: #0f62fe;
+  padding: 0 12px 0 12px;
+}
+
+adc-button[kind=ghost]::part( button ):hover {                
+  background-color: #e5e5e5e4;
+}
+
+adc-button[kind=ghost]::part( button ):focus {                
+  border-color: #0f62fe;
+  box-shadow: 
+    inset 0 0 0 1px #0f62fe,
+    inset 0 0 0 2px #ffffff;
+}
+
+adc-button[kind=secondary]::part( button ) {
+  background-color: #393939;
+  color: #ffffff;
+  padding: 0 60px 0 12px;
+}
+
+adc-button[kind=secondary]::part( button ):focus {
+  border-color: #0f62fe;
+  box-shadow: 
+    inset 0 0 0 1px #0f62fe,
+    inset 0 0 0 2px #ffffff;          
+}
+
+adc-button[kind=secondary]::part( button ):hover {
+  background-color: #4a4a4a;          
+}
+
+adc-button[kind=tertiary]::part( button ) {
+  background-color: transparent;
+  border: solid 1px #0f62fe;
+  color: #0f62fe;
+  padding: 0 60px 0 12px;
+}
+
+adc-button[kind=tertiary]::part( button ):focus {
+  background-color: #0f62fe;
+  border-color: #0f62fe;
+  box-shadow: 
+    inset 0 0 0 1px #0f62fe,
+    inset 0 0 0 2px #ffffff;
+  color: #ffffff;                    
+}                
+
+adc-button[kind=tertiary]::part( button ):hover {
+  background-color: #0353e9;
+  border: solid 1px #0353e9;          
+  color: #ffffff;          
+}
+
+adc-button[kind=tertiary]::part( button ):disabled {
+  border: solid 1px #c6c6c6;
+  color: #c6c6c6;
+  cursor: not-allowed;          
+}
+
+adc-button[disabled]::part( button ),
+adc-button[disabled]::part( button ):hover {
+  background-color: #c6c6c6;
+  color: #8d8d8d;
+  cursor: not-allowed;
+}

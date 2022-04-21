@@ -10,170 +10,8 @@ export default class AvocadoButton extends HTMLElement {
           display: block;
           position: relative;
         }                
-
-        :host( [concealed] ) {
-          visibility: hidden;
-        }
-
-        :host( [hidden] ) {
-          display: none;
-        }
-
-        button {
-          background: none;
-          background-color: #0f62fe;          
-          background-position: right 16px center;
-          background-repeat: no-repeat;
-          background-size: 16px;
-          border: none;
-          border: solid 1px transparent;
-          box-sizing: border-box;          
-          color: #ffffff;          
-          cursor: pointer;
-          font-family: 'IBM Plex Sans', sans-serif;
-          font-size: 14px;
-          font-weight: 400;
-          height: 48px;
-          margin: 0;
-          outline: solid 1px transparent;
-          outline-offset: -3px;
-          padding: 0 60px 0 12px;
-          text-align: left;
-          text-rendering: optimizeLegibility;
-          white-space: nowrap;
-          width: 100%;
-        }
-
-        button:focus {
-          border-color: #0f62fe;
-          box-shadow: 
-            inset 0 0 0 1px #0f62fe,
-            inset 0 0 0 2px #ffffff;          
-        }      
-        
-        button:hover {
-          background-color: #0353e9;
-        }              
-
-        :host( [disabled] ) button {
-          background-color: #c6c6c6;
-          color: #8d8d8d;
-          cursor: not-allowed;
-        }
-
-        :host( [size=field] ) button {
-          height: 40px;
-        }
-
-        :host( [size=sm] ) button {
-          height: 32px;
-        }        
-
-        :host( [size=lg] ) button {
-          height: 64px;
-        }              
-        
-        :host( [size=xl] ) button {
-          height: 80px;
-        }
-
-        :host( [kind=secondary] ) button {
-          background-color: #393939;
-          color: #ffffff;
-          padding: 0 60px 0 12px;
-        }
-
-        :host( [kind=secondary] ) button:focus {
-          border-color: #0f62fe;
-          box-shadow: 
-            inset 0 0 0 1px #0f62fe,
-            inset 0 0 0 2px #ffffff;          
-        }
-
-        :host( [kind=secondary] ) button:hover {
-          background-color: #4a4a4a;          
-        }
-
-        :host( [kind=secondary] ) button:disabled {
-          background-color: #c6c6c6;
-          color: #8d8d8d;
-          cursor: not-allowed;
-        }        
-
-        :host( [kind=tertiary] ) button {
-          background-color: transparent;
-          border: solid 1px #0f62fe;
-          color: #0f62fe;
-          padding: 0 60px 0 12px;
-        }
-
-        :host( [kind=tertiary] ) button:focus {
-          background-color: #0f62fe;
-          border-color: #0f62fe;
-          box-shadow: 
-            inset 0 0 0 1px #0f62fe,
-            inset 0 0 0 2px #ffffff;
-          color: #ffffff;                    
-        }        
-
-        :host( [kind=tertiary] ) button:hover {
-          background-color: #0353e9;
-          border: solid 1px #0353e9;          
-          color: #ffffff;          
-        }        
-
-        :host( [kind=tertiary] ) button:disabled {
-          border: solid 1px #c6c6c6;
-          color: #c6c6c6;
-          cursor: not-allowed;          
-        }
-
-        :host( [kind=danger] ) button {
-          background-color: #da1e28;
-          color: #ffffff;
-          padding: 0 60px 0 12px;          
-        }
-
-        :host( [kind=danger] ) button:focus {
-          border-color: #0f62fe;
-          box-shadow: 
-            inset 0 0 0 1px #0f62fe,
-            inset 0 0 0 2px #ffffff;
-        }
-
-        :host( [kind=danger] ) button:hover {
-          background-color: #bc1a22;          
-        }
-
-        :host( [kind=danger] ) button:disabled {
-          background-color: #c6c6c6;
-          color: #8d8d8d;
-          cursor: not-allowed;          
-        }
-
-        :host( [kind=ghost] ) button {        
-          background-color: transparent;
-          color: #0f62fe;
-          padding: 0 12px 0 12px;
-        }
-
-        :host( [kind=ghost] ) button:focus {                
-          border-color: #0f62fe;
-          box-shadow: 
-            inset 0 0 0 1px #0f62fe,
-            inset 0 0 0 2px #ffffff;
-        }
-
-        :host( [kind=ghost] ) button:hover {                
-          background-color: #e5e5e5e4;
-        }
-
-        :host( [kind=ghost] ) button:disabled {                
-          color: #c6c6c6;
-          cursor: not-allowed;
-        }        
-      </style>
-      <button part="button" type="button">
+     </style>
+      <button type="button" part="button">
         <slot></slot>
       </button>
     `;
@@ -187,17 +25,15 @@ export default class AvocadoButton extends HTMLElement {
 
     // Elements
     this.$button = shadowRoot.querySelector( 'button' );
+    this.$button.addEventListener( 'click', () => {
+      this.$button.focus();
+    } );
   }
 
   // When things change
   _render() {
     this.$button.disabled = this.disabled;
-    
-    if( this.title === null ) {
-      this.$button.removeAttribute( 'title' );      
-    } else {
-      this.$button.title = this.title;      
-    }
+    this.$button.title = this.title === null ? '' : this.title;
 
     if( this.label !== null )
       this.innerText = this.label;

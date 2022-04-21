@@ -1,0 +1,24 @@
+adc-box {
+  display: flex;
+  flex-direction: column;
+}
+
+adc-box[concealed] {
+  visibility: hidden;
+}       
+
+adc-box[direction=row] {
+  flex-direction: row;
+}
+
+adc-box[direction=row-reverse] {
+  flex-direction: row-reverse;
+}
+
+adc-box[direction=column-reverse] {
+  flex-direction: column-reverse;
+}                
+
+adc-box[hidden] {
+  display: none;
+}        

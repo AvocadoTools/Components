@@ -10,14 +10,6 @@ export default class AvocadoStack extends HTMLElement {
           display: block;
           position: relative;
         }
-
-        :host( [concealed] ) {
-          visibility: hidden;
-        }
-
-        :host( [hidden] ) {
-          display: none;
-        }
       </style>
       <slot></slot>
     `;

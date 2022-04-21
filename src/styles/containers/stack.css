@@ -1,0 +1,7 @@
+adc-stack[concealed] {
+  visibility: hidden;
+}
+
+adc-stack[hidden] {
+  display: none;
+}

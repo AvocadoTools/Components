@@ -7,17 +7,8 @@ export default class AvocadoVBox extends HTMLElement {
       <style>
         :host {
           box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
+          display: block;
           position: relative;
-        }
-
-        :host( [concealed] ) {
-          visibility: hidden;
-        }
-
-        :host( [hidden] ) {
-          display: none;
         }
       </style>
       <slot></slot>

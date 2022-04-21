@@ -1,0 +1,12 @@
+adc-hbox {
+  display: flex;
+  flex-direction: row;
+}
+
+adc-hbox[concealed] {
+  visibility: hidden;
+}
+
+adc-hbox[hidden] {
+  display: none;
+}
