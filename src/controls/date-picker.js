@@ -29,6 +29,7 @@ export default class AvocadoDatePicker extends HTMLElement {
           box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.30 );
           outline-offset: -1px;
           position: absolute;
+          z-index: 100;
         }
 
         adc-calendar:focus {
@@ -131,6 +132,10 @@ export default class AvocadoDatePicker extends HTMLElement {
 
         :host( [size=xl] ) button {
           height: 48px;
+        }
+
+        :host( [size=xl] ) img {
+          padding: 16px;
         }
       </style>
       <p part="label">Label</p>
