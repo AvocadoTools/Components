@@ -8,7 +8,6 @@ export default class AvocadoTagInput extends HTMLElement {
     template.innerHTML = /* template */ `
       <style>
         :host {
-          background-color: #ffffff;
           box-sizing: border-box;
           display: block;
           position: relative;
@@ -67,6 +66,7 @@ export default class AvocadoTagInput extends HTMLElement {
 
         label {
           align-items: center;
+          background-color: #ffffff;          
           border: solid 2px transparent;
           box-sizing: border-box;
           display: flex;
@@ -78,6 +78,59 @@ export default class AvocadoTagInput extends HTMLElement {
           border: solid 2px #0f62fe;
         }
 
+        p {
+          color: #161616;
+          cursor: pointer;
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          margin: 0;
+          padding: 0;
+          text-rendering: optimizeLegibility;
+        }
+
+        p[part=error] {
+          color: #6f6f6f;
+          font-size: 12px;
+          padding: 5px 0 2px 0;
+          visibility: hidden;
+        }        
+
+        p[part=hint] {
+          color: #6f6f6f;
+          display: none;
+          font-size: 12px;
+          margin: -4px 0 0 0;
+          padding: 0 0 6px 0;
+        }                
+
+        p[part=label] {
+          color: #393939;
+          display: none;
+          font-size: 12px;
+          padding: 0 0 6px 0;
+        }
+
+        :host( [error] ) p[part=error] {
+          visibility: visible;
+        }
+
+        :host( [hint] ) p[part=hint] {
+          display: block;
+        }
+
+        :host( [invalid] ) label {
+          border: solid 2px #da1e28;
+        }
+
+        :host( [invalid] ) p[part=error] {
+          color: #da1e28;
+        }
+
+        :host( [label] ) p[part=label] {
+          display: block;
+        }
+
         :host( [light] ) {
           background-color: transparent;
         }
@@ -86,10 +139,13 @@ export default class AvocadoTagInput extends HTMLElement {
           height: 44px;
         }
       </style>
+      <p part="label"></p>
+      <p part="hint"></p>
       <label part="field">
         <div part="list"></div>
         <input part="input" type="text">
       </label>
+      <p part="error"></p>
     `;
 
     // Properties
@@ -107,6 +163,8 @@ export default class AvocadoTagInput extends HTMLElement {
     shadowRoot.appendChild( template.content.cloneNode( true ) );
 
     // Elements
+    this.$error = shadowRoot.querySelector( 'p[part=error]' );        
+    this.$hint = shadowRoot.querySelector( 'p[part=hint]' );    
     this.$input = shadowRoot.querySelector( 'input' );
     this.$input.addEventListener( 'keydown', ( evt ) => {
       if( evt.key === 'Enter' ) {
@@ -154,6 +212,7 @@ export default class AvocadoTagInput extends HTMLElement {
         }
       }
     } );
+    this.$label = shadowRoot.querySelector( 'p[part=label]' );
     this.$list = shadowRoot.querySelector( 'div[part=list]' );
   }
 
@@ -171,8 +230,11 @@ export default class AvocadoTagInput extends HTMLElement {
 
   // When things change
   _render() {
+    this.$label.innerText = this.label === null ? '' : this.label;
+    this.$hint.innerText = this.hint === null ? '' : this.hint;    
     this.$input.title = this.title === null ? '' : this.title;
     this.$input.placeholder = this.placeholder === null ? '' : this.placeholder;
+    this.$error.innerText = this.error === null ? '&nbsp;' : this.error;        
 
     while( this.$list.children.length > this._value.length ) {
       this.$list.children[0].removeEventListener( 'clear', this.doTagClear );
@@ -226,7 +288,10 @@ export default class AvocadoTagInput extends HTMLElement {
     this._upgrade( 'colorFunction' );            
     this._upgrade( 'concealed' );    
     this._upgrade( 'data' );            
+    this._upgrade( 'error' );        
     this._upgrade( 'hidden' );    
+    this._upgrade( 'hint' );            
+    this._upgrade( 'label' );        
     this._upgrade( 'labelField' );        
     this._upgrade( 'labelFunction' );                
     this._upgrade( 'placeholder' );        
@@ -242,7 +307,10 @@ export default class AvocadoTagInput extends HTMLElement {
     return [
       'color-field',
       'concealed',
+      'error',
       'hidden',
+      'hint',
+      'label',
       'label-field',
       'placeholder',
       'size',
@@ -348,6 +416,22 @@ export default class AvocadoTagInput extends HTMLElement {
     }
   }
 
+  get error() {
+    if( this.hasAttribute( 'error' ) ) {
+      return this.getAttribute( 'error' );
+    }
+
+    return null;
+  }
+
+  set error( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'error', value );
+    } else {
+      this.removeAttribute( 'error' );
+    }
+  }    
+
   get hidden() {
     return this.hasAttribute( 'hidden' );
   }
@@ -367,6 +451,38 @@ export default class AvocadoTagInput extends HTMLElement {
       this.removeAttribute( 'hidden' );
     }
   }
+
+  get hint() {
+    if( this.hasAttribute( 'hint' ) ) {
+      return this.getAttribute( 'hint' );
+    }
+
+    return null;
+  }
+
+  set hint( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'hint', value );
+    } else {
+      this.removeAttribute( 'hint' );
+    }
+  }      
+
+  get label() {
+    if( this.hasAttribute( 'label' ) ) {
+      return this.getAttribute( 'label' );
+    }
+
+    return null;
+  }
+
+  set label( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'label', value );
+    } else {
+      this.removeAttribute( 'label' );
+    }
+  }     
 
   get labelField() {
     if( this.hasAttribute( 'label-field' ) ) {
