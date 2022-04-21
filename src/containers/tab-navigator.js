@@ -1,3 +1,5 @@
+import AvocadoTab from '../controls/tab.js';
+
 export default class AvocadoTabNavigator extends HTMLElement {
   constructor() {
     super();
