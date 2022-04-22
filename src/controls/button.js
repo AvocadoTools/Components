@@ -4,13 +4,6 @@ export default class AvocadoButton extends HTMLElement {
 
     const template = document.createElement( 'template' )
     template.innerHTML = /* template */ `
-      <style>
-        :host {
-          box-sizing: border-box;
-          display: block;
-          position: relative;
-        }                
-     </style>
       <button type="button" part="button">
         <slot></slot>
       </button>

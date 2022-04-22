@@ -1,22 +1,36 @@
-export default class AvocadoVBox extends HTMLElement {
+export default class AvocadoLink extends HTMLElement {
   constructor() {
     super();
 
-    const template = document.createElement( 'template' );
+    const template = document.createElement( 'template' )
     template.innerHTML = /* template */ `
-      <slot></slot>
+      <button part="button">
+        <slot></slot>
+      </button>
     `;
 
-    // Private
+    // Properties
     this._data = null;
 
     // Root
-    this.attachShadow( {mode: 'open'} );
-    this.shadowRoot.appendChild( template.content.cloneNode( true ) );
+    const shadowRoot = this.attachShadow( {mode: 'open'} );
+    shadowRoot.appendChild( template.content.cloneNode( true ) );
+
+    // Elements
+    this.$button = shadowRoot.querySelector( 'button' );
+    this.$button.addEventListener( 'click', () => {
+      if( this.href !== null )
+        window.open( this.href );
+    } );
   }
 
-   // When attributes change
-  _render() {;}
+  // When things change
+  _render() {
+    this.$button.title = this.title === null ? '' : this.title;
+
+    if( this.label !== null )
+      this.innerText = this.label;
+  }
 
   // Promote properties
   // Values may be set before module load
@@ -25,18 +39,19 @@ export default class AvocadoVBox extends HTMLElement {
       const value = this[property];
       delete this[property];
       this[property] = value;
-    }
-  }
+    }    
+  }    
 
   // Setup
   connectedCallback() {
-    this._upgrade( 'concealed' );        
-    this._upgrade( 'data' );                
-    this._upgrade( 'disabled' );            
+    this._upgrade( 'concealed' );    
+    this._upgrade( 'data' );            
+    this._upgrade( 'disabled' );        
     this._upgrade( 'hidden' );    
-    this._upgrade( 'hint' );        
-    this._upgrade( 'icon' );        
-    this._upgrade( 'label' );        
+    this._upgrade( 'href' );        
+    this._upgrade( 'inline' );        
+    this._upgrade( 'label' );            
+    this._upgrade( 'title' );    
     this._render();
   }
 
@@ -46,21 +61,22 @@ export default class AvocadoVBox extends HTMLElement {
       'concealed',
       'disabled',
       'hidden',
-      'hint',
-      'icon',
-      'label'
+      'href',
+      'inline',
+      'label',
+      'title'
     ];
   }
 
-  // Observed attribute has changed
+  // Observed tag attribute has changed
   // Update render
   attributeChangedCallback( name, old, value ) {
     this._render();
-  } 
+  }
 
   // Properties
   // Not reflected
-  // Array, Date, Object, null
+  // Array, Date, Object, null 
   get data() {
     return this._data;
   }
@@ -91,7 +107,7 @@ export default class AvocadoVBox extends HTMLElement {
       this.removeAttribute( 'concealed' );
     }
   }
-
+  
   get disabled() {
     return this.hasAttribute( 'disabled' );
   }
@@ -130,40 +146,44 @@ export default class AvocadoVBox extends HTMLElement {
     } else {
       this.removeAttribute( 'hidden' );
     }
-  }   
+  }
 
-  get hint() {
-    if( this.hasAttribute( 'hint' ) ) {
-      return this.getAttribute( 'hint' );
+  get href() {
+    if( this.hasAttribute( 'href' ) ) {
+      return this.getAttribute( 'href' );
     }
 
     return null;
   }
 
-  set hint( value ) {
+  set href( value ) {
     if( value !== null ) {
-      this.setAttribute( 'hint', value );
+      this.setAttribute( 'href', value );
     } else {
-      this.removeAttribute( 'hint' );
+      this.removeAttribute( 'href' );
     }
-  }      
+  }          
 
-  get icon() {
-    if( this.hasAttribute( 'icon' ) ) {
-      return this.getAttribute( 'icon' );
-    }
-
-    return null;
+  get inline() {
+    return this.hasAttribute( 'inline' );
   }
 
-  set icon( value ) {
+  set inline( value ) {
     if( value !== null ) {
-      this.setAttribute( 'icon', value );
+      if( typeof value === 'boolean' ) {
+        value = value.toString();
+      }
+
+      if( value === 'false' ) {
+        this.removeAttribute( 'inline' );
+      } else {
+        this.setAttribute( 'inline', '' );
+      }
     } else {
-      this.removeAttribute( 'icon' );
+      this.removeAttribute( 'inline' );
     }
-  }   
-  
+  }  
+
   get label() {
     if( this.hasAttribute( 'label' ) ) {
       return this.getAttribute( 'label' );
@@ -178,7 +198,23 @@ export default class AvocadoVBox extends HTMLElement {
     } else {
       this.removeAttribute( 'label' );
     }
-  }     
+  }        
+
+  get title() {
+    if( this.hasAttribute( 'title' ) ) {
+      return this.getAttribute( 'title' );
+    }
+
+    return null;
+  }
+
+  set title( value ) {
+    if( value !== null ) {
+      this.setAttribute( 'title', value );
+    } else {
+      this.removeAttribute( 'title' );
+    }
+  }      
 }
 
-window.customElements.define( 'adc-vbox', AvocadoVBox );
+window.customElements.define( 'adc-link', AvocadoLink );

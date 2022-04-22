@@ -1,3 +1,9 @@
+adc-button {
+  box-sizing: border-box;
+  display: block;
+  position: relative;  
+}
+
 adc-button[concealed] {
   visibility: hidden;
 }

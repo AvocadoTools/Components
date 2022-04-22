@@ -1,3 +1,9 @@
+adc-label {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+}
+
 adc-label[concealed] {
   visibility: hidden;
 }        

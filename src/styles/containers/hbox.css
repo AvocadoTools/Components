@@ -1,6 +1,8 @@
 adc-hbox {
+  box-sizing: border-box;  
   display: flex;
   flex-direction: row;
+  position: relative;  
 }
 
 adc-hbox[concealed] {

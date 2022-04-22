@@ -4,13 +4,6 @@ export default class AvocadoInput extends HTMLElement {
 
     const template = document.createElement( 'template' )
     template.innerHTML = /* template */ `
-      <style>
-        :host {
-          box-sizing: border-box;
-          display: block;
-          position: relative;
-        }
-      </style>
       <div part="heading">
         <p part="label"></p>
         <slot name="count"></slot>

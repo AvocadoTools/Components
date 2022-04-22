@@ -6,6 +6,7 @@
 @import './controls/button.css';
 @import './controls/input.css';
 @import './controls/label.css';
+@import './controls/link.css';
 
 @font-face {
   font-family: 'IBM Plex Sans';

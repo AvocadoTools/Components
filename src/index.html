@@ -19,6 +19,11 @@
         margin: 0;
         padding: 0;
       }
+
+      adc-label[slot=count] {
+        --label-color: #0f62fe;
+        --label-font-size: 12px;
+      }
     </style>
 
   </head>
@@ -35,10 +40,12 @@
     <adc-label>Label</adc-label>
     <adc-label text="Label Shortcut"></adc-label>    
 
+    <adc-link href="https://kevinhoyt.com">Link</adc-link>
+
     <adc-input 
-      hint="An input hint for you" 
       label="Input Label" 
       placeholder="Input: Placeholder">
+      <adc-label slot="count">10/200</adc-label>
     </adc-input>
     <adc-text-area 
       hint="A text area hint for you" 

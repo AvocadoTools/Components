@@ -4,13 +4,6 @@ export default class AvocadoLabel extends HTMLElement {
 
     const template = document.createElement( 'template' )
     template.innerHTML = /* template */ `
-      <style>
-        :host {
-          box-sizing: border-box;
-          display: block;
-          position: relative;
-        }
-      </style>
       <p part="label">
         <slot></slot>
       </p>
