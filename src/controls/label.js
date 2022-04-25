@@ -4,51 +4,6 @@ export default class AvocadoLabel extends HTMLElement {
 
     const template = document.createElement( 'template' )
     template.innerHTML = /* template */ `
-      <style>
-        :host {
-          box-sizing: border-box;
-          display: block;
-          position: relative;
-        }
-
-        :host( [concealed] ) {
-          visibility: hidden;
-        }        
-
-        :host( [disabled] ) p {
-          color: var( --label-disabled-color, #c6c6c6 );
-        }
-
-        :host( [hidden] ) {
-          display: none;
-        }        
-
-        :host( [ignore] ) p {
-          user-select: none;
-        }                
-
-        :host( [truncate] ) p {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        p {
-          background-color: var( --label-background-color, transparent );
-          box-sizing: border-box;
-          color: var( --label-color, #161616 );
-          cursor: var( --label-cursor, default );
-          font-family: 'IBM Plex Sans', sans-serif;
-          font-size: var( --label-font-size, 14px );
-          font-weight: var( --label-font-weight, 400 );
-          line-height: var( --label-line-height );
-          margin: 0;
-          padding: 0;
-          text-align: var( --label-text-align, left );
-          text-rendering: optimizeLegibility;
-          width: 100%;
-        }
-      </style>
       <p part="label">
         <slot></slot>
       </p>
@@ -67,11 +22,7 @@ export default class AvocadoLabel extends HTMLElement {
 
   // When things change
   _render() {
-    if( this.title === null ) {
-      this.$label.removeAttribute( 'title' );      
-    } else {
-      this.$label.title = this.title;
-    }
+    this.$label.title = this.title === null ? '' : this.title;
 
     if( this.text !== null )
       this.innerText = this.text;

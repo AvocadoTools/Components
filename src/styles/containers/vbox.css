@@ -1,0 +1,14 @@
+adc-vbox {
+  box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  position: relative;  
+}
+
+adc-vbox[concealed] {
+  visibility: hidden;
+}
+
+adc-vbox[hidden] {
+  display: none;
+}
