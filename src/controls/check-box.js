@@ -1,4 +1,4 @@
-export default class AvocadoLabel extends HTMLElement {
+export default class AvocadoCheckBox extends HTMLElement {
   constructor() {
     super();
 
@@ -15,43 +15,62 @@ export default class AvocadoLabel extends HTMLElement {
           visibility: hidden;
         }        
 
-        :host( [disabled] ) p {
-          color: var( --label-disabled-color, #c6c6c6 );
-        }
-
         :host( [hidden] ) {
           display: none;
         }        
 
-        :host( [inert] ) p {
-          user-select: none;
-        }                
+        button {
+          align-items: center;
+          background: none;
+          background-image: url( /img/controls/checkbox.svg );
+          background-position: left 1px center;
+          background-repeat: no-repeat;
+          background-size: 18px;
+          border: none;
+          box-sizing: border-box;
+          cursor: var( --check-box-cursor, pointer );
+          display: flex;
+          flex-direction: row;
+          margin: 0;
+          min-height: 40px;
+          min-width: 24px;
+          outline: none;
+          padding: 0;
+          position: relative;
+        }
 
-        :host( [truncate] ) p {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+        button:focus::after {
+          border: solid 2px #0f62fe;
+          content: '';
+          height: 13px;
+          left: 1px;
+          position: absolute;
+          top: 15px;
+          width: 14px;
         }
 
         p {
-          background-color: var( --label-background-color, transparent );
-          box-sizing: border-box;
-          color: var( --label-color, #161616 );
-          cursor: var( --label-cursor, default );
+          color: var( --check-box-color, #161616 );
           font-family: 'IBM Plex Sans', sans-serif;
-          font-size: var( --label-font-size, 14px );
-          font-weight: var( --label-font-weight, 400 );
-          line-height: var( --label-line-height );
-          margin: 0;
-          padding: 0;
-          text-align: var( --label-text-align, left );
+          font-size: var( --check-box-font-size, 14px );
+          font-weight: 400;
+          padding: 0 0 0 24px;
           text-rendering: optimizeLegibility;
-          width: 100%;
+        }
+
+        :host( [checked] ) button {
+          background-image: url( /img/controls/checkbox-checked.svg );          
+        }
+
+        :host( [hide-label] ) p {
+          display: none;
         }
       </style>
-      <p part="label">
-        <slot></slot>
-      </p>
+      <button part="button">
+        <p part="label">
+          <slot></slot>
+        </p>
+      </button>
     `;
 
     // Properties
@@ -62,19 +81,23 @@ export default class AvocadoLabel extends HTMLElement {
     shadowRoot.appendChild( template.content.cloneNode( true ) );
 
     // Elements
+    this.$button = shadowRoot.querySelector( 'button' );
+    this.$button.addEventListener( 'click', () => {
+      this.checked = !this.checked;
+    } );
     this.$label = shadowRoot.querySelector( 'p' );
   }
 
   // When things change
   _render() {
     if( this.title === null ) {
-      this.$label.removeAttribute( 'title' );      
+      this.$button.removeAttribute( 'title' );      
     } else {
-      this.$label.title = this.title;
+      this.$button.title = this.title;
     }
 
-    if( this.text !== null )
-      this.innerText = this.text;
+    if( this.label !== null )
+      this.innerText = this.label;
   }
 
   // Promote properties
@@ -89,27 +112,25 @@ export default class AvocadoLabel extends HTMLElement {
 
   // Setup
   connectedCallback() {
+    this._upgrade( 'checked' );        
     this._upgrade( 'concealed' );    
     this._upgrade( 'data' );            
-    this._upgrade( 'disabled' );        
     this._upgrade( 'hidden' );    
-    this._upgrade( 'inert' );        
-    this._upgrade( 'text' );        
+    this._upgrade( 'hideLabel' );    
+    this._upgrade( 'label' );        
     this._upgrade( 'title' );    
-    this._upgrade( 'truncate' );    
     this._render();
   }
 
   // Watched attributes
   static get observedAttributes() {
     return [
+      'checked',
       'concealed',
-      'disabled',
       'hidden',
-      'inert',
-      'text',
-      'title',
-      'truncate'
+      'hide-label',
+      'label',
+      'title'
     ];
   }
 
@@ -133,6 +154,26 @@ export default class AvocadoLabel extends HTMLElement {
   // Attributes
   // Reflected
   // Boolean, Number, String, null
+  get checked() {
+    return this.hasAttribute( 'checked' );
+  }
+
+  set checked( value ) {
+    if( value !== null ) {
+      if( typeof value === 'boolean' ) {
+        value = value.toString();
+      }
+
+      if( value === 'false' ) {
+        this.removeAttribute( 'checked' );
+      } else {
+        this.setAttribute( 'checked', '' );
+      }
+    } else {
+      this.removeAttribute( 'checked' );
+    }
+  }
+
   get concealed() {
     return this.hasAttribute( 'concealed' );
   }
@@ -153,26 +194,6 @@ export default class AvocadoLabel extends HTMLElement {
     }
   }
   
-  get disabled() {
-    return this.hasAttribute( 'disabled' );
-  }
-
-  set disabled( value ) {
-    if( value !== null ) {
-      if( typeof value === 'boolean' ) {
-        value = value.toString();
-      }
-
-      if( value === 'false' ) {
-        this.removeAttribute( 'disabled' );
-      } else {
-        this.setAttribute( 'disabled', '' );
-      }
-    } else {
-      this.removeAttribute( 'disabled' );
-    }
-  }  
-
   get hidden() {
     return this.hasAttribute( 'hidden' );
   }
@@ -193,39 +214,39 @@ export default class AvocadoLabel extends HTMLElement {
     }
   }
 
-  get inert() {
-    return this.hasAttribute( 'inert' );
+  get hideLabel() {
+    return this.hasAttribute( 'hide-label' );
   }
 
-  set inert( value ) {
+  set hideLabel( value ) {
     if( value !== null ) {
       if( typeof value === 'boolean' ) {
         value = value.toString();
       }
 
       if( value === 'false' ) {
-        this.removeAttribute( 'inert' );
+        this.removeAttribute( 'hide-label' );
       } else {
-        this.setAttribute( 'inert', '' );
+        this.setAttribute( 'hide-label', '' );
       }
     } else {
-      this.removeAttribute( 'inert' );
+      this.removeAttribute( 'hide-label' );
     }
-  }  
+  }
 
-  get text() {
-    if( this.hasAttribute( 'text' ) ) {
-      return this.getAttribute( 'text' );
+  get label() {
+    if( this.hasAttribute( 'label' ) ) {
+      return this.getAttribute( 'label' );
     }
 
     return null;
   }
 
-  set text( value ) {
+  set label( value ) {
     if( value !== null ) {
-      this.setAttribute( 'text', value );
+      this.setAttribute( 'label', value );
     } else {
-      this.removeAttribute( 'text' );
+      this.removeAttribute( 'label' );
     }
   }      
 
@@ -243,27 +264,7 @@ export default class AvocadoLabel extends HTMLElement {
     } else {
       this.removeAttribute( 'title' );
     }
-  }      
-
-  get truncate() {
-    return this.hasAttribute( 'truncate' );
-  }
-
-  set truncate( value ) {
-    if( value !== null ) {
-      if( typeof value === 'boolean' ) {
-        value = value.toString();
-      }
-
-      if( value === 'false' ) {
-        this.removeAttribute( 'truncate' );
-      } else {
-        this.setAttribute( 'truncate', '' );
-      }
-    } else {
-      this.removeAttribute( 'truncate' );
-    }
-  }    
+  }       
 }
 
-window.customElements.define( 'adc-label', AvocadoLabel );
+window.customElements.define( 'adc-check-box', AvocadoCheckBox );

@@ -14,13 +14,41 @@ export default class AvocadoTabNavigator extends HTMLElement {
           position: relative;
         }
 
-        div:first-of-type {
+        button {
+          background: none;
+          background-image: url( 'img/controls/maximize.svg' );
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 16px;
+          border: none;
           box-sizing: border-box;
+          cursor: pointer;
+          display: none;
+          height: 48px;
+          margin: 0;
+          padding: 0;
+          text-rendering: optimizeLegibility;
+          width: 48px;
+        }
+
+        button:hover {
+          background-color: #e5e5e5;
+        }
+
+        div[part=bar] {
+          box-sizing: border-box;
+          flex-basis: 0;
+          flex-grow: 1;
           display: flex;
           flex-direction: row;
         }
 
-        div:last-of-type {
+        div[part=top] {
+          display: flex;
+          flex-direction: row;
+        }
+
+        div[part=stack] {
           background-color: #f4f4f4;
           box-sizing: border-box;
           display: flex;
@@ -34,8 +62,19 @@ export default class AvocadoTabNavigator extends HTMLElement {
         adc-tab[selected] + abc-tab {
           border-left: solid 1px transparent;
         }
+
+        :host( [expandable] ) button {
+          display: block;
+        }
+
+        :host( [maximized] ) button {
+          background-image: url( img/controls/minimize.svg );
+        }
       </style>
-      <div part="bar"></div>
+      <div part="top">
+        <div part="bar"></div>
+        <button part="expand"></button>
+      </div>
       <div part="stack">
         <slot></slot>
       </div>
@@ -54,6 +93,13 @@ export default class AvocadoTabNavigator extends HTMLElement {
 
     // Elements
     this.$bar = shadowRoot.querySelector( 'div[part=bar]' );
+    this.$button = shadowRoot.querySelector( 'button' );
+    this.$button.addEventListener( 'click', () => {
+      this.maximized = !this.maximized;
+      this.dispatchEvent( new CustomEvent( 'expand', {
+        detail: this.maximized
+      } ) );
+    } );
     this.$stack = shadowRoot.querySelector( 'slot' );
     this.$stack.addEventListener( 'slotchange', () => {
       // Observer for disabled
@@ -132,8 +178,10 @@ export default class AvocadoTabNavigator extends HTMLElement {
   // Setup
   connectedCallback() {
     this._upgrade( 'concealed' );
-    this._upgrade( 'disabled' );
+    this._upgrade( 'data' );
+    this._upgrade( 'expandable' );        
     this._upgrade( 'hidden' );
+    this._upgrade( 'maximized' );    
     this._upgrade( 'selectedIndex' );
     this._render();
   }
@@ -142,8 +190,9 @@ export default class AvocadoTabNavigator extends HTMLElement {
   static get observedAttributes() {
     return [
       'concealed',
-      'disabled',
+      'expandable',
       'hidden',
+      'maximized',
       'selected-index'
     ];
   }
@@ -188,6 +237,26 @@ export default class AvocadoTabNavigator extends HTMLElement {
     }
   }
 
+  get expandable() {
+    return this.hasAttribute( 'expandable' );
+  }
+
+  set expandable( value ) {
+    if( value !== null ) {
+      if( typeof value === 'boolean' ) {
+        value = value.toString();
+      }
+
+      if( value === 'false' ) {
+        this.removeAttribute( 'expandable' );
+      } else {
+        this.setAttribute( 'expandable', '' );
+      }
+    } else {
+      this.removeAttribute( 'expandable' );
+    }
+  }  
+
   get hidden() {
     return this.hasAttribute( 'hidden' );
   }
@@ -207,6 +276,26 @@ export default class AvocadoTabNavigator extends HTMLElement {
       this.removeAttribute( 'hidden' );
     }
   }
+
+  get maximized() {
+    return this.hasAttribute( 'maximized' );
+  }
+
+  set maximized( value ) {
+    if( value !== null ) {
+      if( typeof value === 'boolean' ) {
+        value = value.toString();
+      }
+
+      if( value === 'false' ) {
+        this.removeAttribute( 'maximized' );
+      } else {
+        this.setAttribute( 'maximized', '' );
+      }
+    } else {
+      this.removeAttribute( 'maximized' );
+    }
+  }  
 
   get selectedIndex() {
     if( this.hasAttribute( 'selected-index' ) ) {

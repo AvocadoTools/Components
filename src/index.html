@@ -9,20 +9,40 @@
     <title>Components</title>
 
     <link rel="icon" href="img/avocado.ico">
-    <link rel="stylesheet" href="styles/avocado.css">
 
     <style>
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: 400;
+        src: url( 'fonts/sans/IBMPlexSans-Regular.woff2' ) format( 'woff2' );
+      }
+
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: 500;
+        src: url( 'fonts/sans/IBMPlexSans-Medium.woff2' ) format( 'woff2' );
+      }
+
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: 600;
+        src: url( 'fonts/sans/IBMPlexSans-SemiBold.woff2' ) format( 'woff2' );
+      }
+
       body {
-        background-color: #f4f4f4;
+        background-color: #ffffff;
         display: flex;
         flex-direction: column;
         margin: 0;
         padding: 0;
       }
 
-      adc-label[slot=count] {
-        --label-color: #0f62fe;
-        --label-font-size: 12px;
+      adc-list {
+        width: 500px;
+      }
+
+      adc-table {
+        width: 500px;
       }
     </style>
 
@@ -30,66 +50,104 @@
   <body>
 
     <adc-hbox>
-      <adc-button title="Primary">Button</adc-button>      
-      <adc-button kind="secondary" title="Secondary">Button</adc-button>      
-      <adc-button kind="tertiary" title="Tertiary">Button</adc-button>      
-      <adc-button kind="danger" title="Danger">Button</adc-button>      
-      <adc-button kind="ghost" title="Ghost">Button</adc-button>      
+      <adc-button title="Primary">Button</adc-button>
+      <adc-button kind="secondary" title="Secondary">Button</adc-button>
+      <adc-button kind="tertiary" title="Tertiary">Button</adc-button>
+      <adc-button kind="danger" title="Danger">Button</adc-button>
+      <adc-button kind="ghost" title="Ghost">Button</adc-button>
     </adc-hbox>
 
+    <adc-avatar label="KH"></adc-avatar>
+
+    <adc-spacer height="16"></adc-spacer>
+
     <adc-label>Label</adc-label>
-    <adc-label text="Label Shortcut"></adc-label>    
+    <adc-label text="Label Shortcut"></adc-label>
 
-    <adc-link href="https://kevinhoyt.com">Link</adc-link>
+    <adc-spacer height="16"></adc-spacer>
 
-    <adc-input 
-      label="Input Label" 
+    <adc-check-box>Check box</adc-check-box>
+
+    <adc-spacer height="16"></adc-spacer>
+
+    <adc-link>Link</adc-link>
+    <adc-link inline label="Link Shortcut"></adc-link>
+
+    <adc-input
+      error="Error message"
+      hint="An input hint for you"
+      label="Input Label"
       placeholder="Input: Placeholder">
-      <adc-label slot="count">10/200</adc-label>
     </adc-input>
-    <adc-text-area 
-      hint="A text area hint for you" 
-      label="Text Area Label" 
+    <adc-text-area
+      hint="A text area hint for you"
+      label="Text Area Label"
       placeholder="Text area: Placeholder">
     </adc-text-area>
 
-    <adc-tab-navigator>
-      <adc-hbox hint="This is one" label="One">
+    <adc-tab-navigator selected-index="2">
+      <adc-hbox hint="Just a label" label="One">
         <adc-label>One</adc-label>
       </adc-hbox>
-      <adc-hbox hint="This is two" label="Two">
-        <adc-label>Two</adc-label>
+      <adc-hbox hint="A data table" label="Two" style="padding: 16px;">
+        <adc-table light>
+          <adc-column label-field="first" width="150">First Name</adc-column>
+          <adc-column label-field="last" sortable>Last Name</adc-column>
+          <adc-column label-field="position">Position</adc-column>
+        </adc-table>
       </adc-hbox>
-      <adc-hbox disabled hint="This is three" label="Three">
-        <adc-label>Three</adc-label>
-      </adc-hbox>            
+      <adc-hbox hint="A list" label="Three" style="padding: 16px;">
+        <adc-list light></adc-list>
+      </adc-hbox>
+      <adc-hbox disabled hint="This is disabled" label="Four">
+        <adc-label>Four</adc-label>
+      </adc-hbox>
     </adc-tab-navigator>
+
+    <adc-spacer height="16"></adc-spacer>
 
     <adc-search placeholder="Search: Placeholder"></adc-search>
 
     <adc-hbox>
       <adc-tag>One</adc-tag>
       <adc-tag color="red" filter label="Two"></adc-tag>
-      <adc-tag disabled>Three</adc-tag>      
-      <adc-tag color="red" disabled filter>Four</adc-tag>            
-      <adc-tag color="green" filter>Five</adc-tag>                  
+      <adc-tag disabled>Three</adc-tag>
+      <adc-tag color="red" disabled filter>Four</adc-tag>
+      <adc-tag color="green" filter>Five</adc-tag>
     </adc-hbox>
 
-    <adc-tag-input 
-      hint="A tag input hint for you" 
+    <adc-tag-input
+      hint="A tag input hint for you"
       label="Tag Input Label"
       placeholder="Tag input: Placeholder">
     </adc-tag-input>
 
-    <adc-date-picker 
-      hint="A date picker hint for you" 
+    <adc-date-picker
+      hint="A date picker hint for you"
       label="Date Picker Label">
     </adc-date-picker>
-    
+
     <!-- Related: -->
     <!-- <adc-calendar></adc-calendar> -->
 
-    <script src="avocado.js" type="module"></script>
+    <script src="components.js" type="module"></script>
+
+    <script>
+      const table = document.querySelector( 'adc-table' );
+      table.provider = [
+        {first: 'Kevin', last: 'Hoyt', position: 'Manager'},
+        {first: 'John', last: 'MacKenzie', position: 'Manager'}
+      ];
+
+      const list = document.querySelector( 'adc-list' );
+      list.provider = [
+        {first: 'Kevin', last: 'Hoyt', position: 'Manager'},
+        {first: 'John', last: 'MacKenzie', position: 'Manager'}
+      ];
+      list.labelFunction = ( value ) => {
+        return value.first + ' ' + value.last;
+      };
+    </script>
 
   </body>
 </html>

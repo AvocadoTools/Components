@@ -4,6 +4,191 @@ export default class AvocadoInput extends HTMLElement {
 
     const template = document.createElement( 'template' )
     template.innerHTML = /* template */ `
+      <style>
+        :host {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+
+        :host( [hidden] ) {
+          display: none;
+        }
+
+        :host( [concealed] ) {
+          visibility: hidden;
+        }
+
+        button {
+          background: none;
+          background-image: url( /img/controls/password.svg );
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 16px;
+          border: none;
+          bottom: 35px;
+          box-sizing: border-box;
+          cursor: pointer;
+          display: none;
+          height: 16px;
+          outline: solid 1px transparent;
+          outline-offset: -1px; 
+          position: absolute;         
+          right: 16px;
+          width: 16px;
+        }
+
+        button:focus {
+          outline: solid 1px #0f62fe;
+        }
+
+        button.reveal {
+          background-image: url( /img/controls/password-off.svg );
+        }
+
+        div {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          padding: 0 0 6px 0;
+        }
+
+        div p {
+          color: #393939;
+          display: none;
+          flex-basis: 0;
+          flex-grow: 1;
+        }
+
+        input {
+          background: none;
+          background-position: right 16px center;
+          background-repeat: no-repeat;
+          background-size: 16px;
+          background-color: var( --input-background-color, #f4f4f4 );
+          border: none;
+          border-bottom: solid 1px #8d8d8d;
+          border-radius: 0;
+          box-sizing: border-box;
+          color: #161616;
+          display: block;
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          height: 40px;
+          outline-offset: -2px;          
+          padding: 0 16px 0 16px;
+          text-rendering: optimizeLegibility;          
+          width: 100%;
+        }
+
+        input::placeholder {
+          color: #a8a8a8;
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }        
+
+        input:disabled::placeholder {
+          color: #c6c6c6;
+        }
+
+        input:focus {
+          outline: solid 2px #0f62fe;
+        }
+
+        input:disabled {
+          border-bottom: solid 1px transparent;
+          color: #c6c6c6;          
+        }
+
+        input:read-only {
+          border-bottom: solid 1px transparent;
+          cursor: not-allowed;
+        }
+
+        input:read-only:focus {
+          outline: solid 2px transparent;
+        }
+
+        p {
+          box-sizing: border-box;
+          cursor: default;
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          margin: 0;
+          padding: 0;
+          text-rendering: optimizeLegibility;          
+        }
+
+        p[part=error] {
+          color: #6f6f6f;          
+          padding: 5px 0 2px 0;
+          visibility: hidden;
+        }
+
+        p[part=hint] {
+          color: #6f6f6f;
+          display: none;
+          margin: -4px 0 0 0;
+          padding: 0 0 6px 0;
+        }        
+
+        :host( [disabled] ) p[part=hint] {
+          color: #c6c6c6;
+        }
+
+        :host( [disabled] ) p[part=label] {
+          color: #c6c6c6;
+        }
+
+        :host( [error] ) p[part=error] {
+          visibility: visible;
+        }
+
+        :host( [hint] ) p[part=hint] {
+          display: block;
+        }
+
+        :host( [invalid] ) input {
+          background-image: url( /img/controls/warning.svg );
+          outline: solid 2px #da1e28;          
+        }
+
+        :host( [invalid] ) input:focus {          
+          outline: solid 2px #da1e28;
+        }        
+
+        :host( [invalid] ) p[part=error] {
+          color: #da1e28;          
+        }
+
+        :host( [label] ) p[part=label] {
+          display: block;
+        }
+
+        :host( [light] ) input {
+          background-color: #ffffff;
+        }
+
+        :host( [password] ) button {
+          display: block;
+        }
+
+        :host( [password] ) input {
+          background-position: right 48px center;
+        }
+
+        ::slotted( adc-label ) {
+          --label-font-size: 12px;
+        }
+
+        ::slotted( adc-link ) {
+          --link-font-size: 12px;
+        }        
+      </style>
       <div part="heading">
         <p part="label"></p>
         <slot name="count"></slot>
@@ -23,7 +208,7 @@ export default class AvocadoInput extends HTMLElement {
     shadowRoot.appendChild( template.content.cloneNode( true ) );
 
     // Elements
-    this.$error = shadowRoot.querySelector( 'p[part=error]' );    
+    this.$label = shadowRoot.querySelector( 'p[part=label]' );
     this.$hint = shadowRoot.querySelector( 'p[part=hint]' );
     this.$input = shadowRoot.querySelector( 'input' );
     this.$input.addEventListener( 'input', () => {
@@ -38,7 +223,7 @@ export default class AvocadoInput extends HTMLElement {
         } ) );
       }      
     } );
-    this.$label = shadowRoot.querySelector( 'p[part=label]' );    
+    this.$error = shadowRoot.querySelector( 'p[part=error]' );
     this.$reveal = shadowRoot.querySelector( 'button' );
     this.$reveal.addEventListener( 'click', () => {
       this._reveal = !this._reveal;    
@@ -63,7 +248,7 @@ export default class AvocadoInput extends HTMLElement {
     this.$hint.innerText = this.hint === null ? '' : this.hint;
     this.$input.disabled = this.disabled;    
     this.$input.placeholder = this.placeholder === null ? '' : this.placeholder;
-    this.$input.readOnly = this.readOnly;
+    this.$input.readOnly = this.readonly;
     this.$input.title = this.title === null ? '' : this.title;
     this.$input.type = this.password === true ? 'password' : 'text';
     this.$input.value = this.value === null ? '' : this.value;
@@ -94,8 +279,7 @@ export default class AvocadoInput extends HTMLElement {
     this._upgrade( 'light' );  
     this._upgrade( 'password' );          
     this._upgrade( 'placeholder' );    
-    this._upgrade( 'readOnly' );    
-    this._upgrade( 'size' );    
+    this._upgrade( 'readonly' );    
     this._upgrade( 'title' );    
     this._upgrade( 'value' );     
     this._render();
@@ -115,8 +299,7 @@ export default class AvocadoInput extends HTMLElement {
       'light',
       'password',
       'placeholder',
-      'read-only',
-      'size',
+      'readonly',
       'title',
       'value'
     ];
@@ -342,41 +525,25 @@ export default class AvocadoInput extends HTMLElement {
     }
   }  
 
-  get readOnly() {
-    return this.hasAttribute( 'read-only' );
+  get readonly() {
+    return this.hasAttribute( 'readonly' );
   }
 
-  set readOnly( value ) {
+  set readonly( value ) {
     if( value !== null ) {
       if( typeof value === 'boolean' ) {
         value = value.toString();
       }
 
       if( value === 'false' ) {
-        this.removeAttribute( 'read-only' );
+        this.removeAttribute( 'readonly' );
       } else {
-        this.setAttribute( 'read-only', '' );
+        this.setAttribute( 'readonly', '' );
       }
     } else {
-      this.removeAttribute( 'read-only' );
+      this.removeAttribute( 'readonly' );
     }
   }
-
-  get size() {
-    if( this.hasAttribute( 'size' ) ) {
-      return this.getAttribute( 'size' );
-    }
-
-    return null;
-  }
-
-  set size( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'size', value );
-    } else {
-      this.removeAttribute( 'size' );
-    }
-  }      
 
   get title() {
     if( this.hasAttribute( 'title' ) ) {

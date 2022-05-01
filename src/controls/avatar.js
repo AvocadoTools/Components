@@ -1,4 +1,4 @@
-export default class AvocadoLink extends HTMLElement {
+export default class AvocadoAvatar extends HTMLElement {
   constructor() {
     super();
 
@@ -11,46 +11,70 @@ export default class AvocadoLink extends HTMLElement {
           position: relative;
         }
 
+        :host( [concealed] ) {
+          visibility: hidden;
+        }
+
+        :host( [hidden] ) {
+          display: none;
+        }
+
         button {
+          align-items: center;
           background: none;
+          background-color: #f4f4f4;
           border: none;
-          color: #0f62fe;
+          border-radius: 100%;
           cursor: pointer;
+          display: flex;
+          height: var( --avatar-height, 62px );          
           font-family: 'IBM Plex Sans', sans-serif;
-          font-size: var( --link-font-size, 14px );
+          font-size: 14px;
           font-weight: 400;
+          justify-content: center;
           margin: 0;
           padding: 0;
+          outline: none;
+          overflow: hidden;
+          position: relative;
+          text-rendering: optimizeLegibility;          
+          width: var( --avatar-width, 62px );
         }
 
-        button:hover {
-          text-decoration: underline;
+        img {
+          display: none;
+          height: var( --avatar-height, 62px );          
+          max-height: var( --avatar-height, 62px );
+          object-fit: cover;
+          width: 100%;
         }
 
-        :host( [disabled] ) button {
-          color: #16161640;
-          cursor: not-allowed;
+        canvas,
+        input {
+          display: none;
         }
 
-        :host( [inline] ) button {
-          text-decoration: underline;
-        }
-
-        button( [size=sm] ) button {
-          font-size: 12px;
-        }
-
-        :host( [size=xl] ) button {
+        p {
+          color: #525252;
+          display: none;
+          font-family: 'IBM Plex Sans', sans-serif;
           font-size: 16px;
+          font-weight: 400;
+          text-rendering: optimizeLegibility;
         }
       </style>
       <button part="button">
-        <slot></slot>
+        <img part="image">
+        <p></p>
       </button>
+      <canvas></canvas>
+      <input accept="image/*" type="file">
     `;
 
     // Properties
+    this._context = null;
     this._data = null;
+    this._value = null;
 
     // Root
     const shadowRoot = this.attachShadow( {mode: 'open'} );
@@ -59,19 +83,37 @@ export default class AvocadoLink extends HTMLElement {
     // Elements
     this.$button = shadowRoot.querySelector( 'button' );
     this.$button.addEventListener( 'click', () => {
-      if( this.href !== null ) {
-        const target = this.target === null ? '_blank' : this.target;
-        window.open( this.href, target );
-      }
+      this.$input.click();
     } );
+    this.$canvas = shadowRoot.querySelector( 'canvas' );
+    this.$input = shadowRoot.querySelector( 'input' );
+    this.$input.addEventListener( 'change', () => {
+      this.value = this.$input.files[0];
+      this.dispatchEvent( new CustomEvent( 'change', {
+        detail: this.$input.files.length === 0 ? null : this.$input.files[0]
+      } ) );
+    } );
+    this.$label = shadowRoot.querySelector( 'p' );
+    this.$img = shadowRoot.querySelector( 'img' );
   }
 
   // When things change
   _render() {
-    this.$button.title = this.title === null ? '' : this.title;
+    this.$label.innerText = this.label === null ? '' : this.label;
 
-    if( this.label !== null )
-      this.innerText = this.label;
+    if( this._value === null ) {
+      this.$label.style.display = 'block';
+      this.$img.style.display = 'none';            
+      return;
+    }
+
+    if( 'name' in this._value ) {
+      this.$label.style.display = 'none';
+      this.$img.style.display = 'block';      
+    } else {
+      this.$label.style.display = 'block';
+      this.$img.style.display = 'none';   
+    }
   }
 
   // Promote properties
@@ -81,20 +123,17 @@ export default class AvocadoLink extends HTMLElement {
       const value = this[property];
       delete this[property];
       this[property] = value;
-    }    
-  }    
+    }
+  }
 
   // Setup
   connectedCallback() {
-    this._upgrade( 'concealed' );    
-    this._upgrade( 'data' );            
-    this._upgrade( 'disabled' );        
-    this._upgrade( 'hidden' );    
-    this._upgrade( 'href' );        
-    this._upgrade( 'inline' );        
-    this._upgrade( 'label' );      
-    this._upgrade( 'target' );      
-    this._upgrade( 'title' );    
+    this._upgrade( 'concealed' );
+    this._upgrade( 'data' );
+    this._upgrade( 'hidden' );
+    this._upgrade( 'label' );    
+    this._upgrade( 'title' );        
+    this._upgrade( 'value' );    
     this._render();
   }
 
@@ -102,12 +141,8 @@ export default class AvocadoLink extends HTMLElement {
   static get observedAttributes() {
     return [
       'concealed',
-      'disabled',
       'hidden',
-      'href',
-      'inline',
       'label',
-      'target',
       'title'
     ];
   }
@@ -120,13 +155,31 @@ export default class AvocadoLink extends HTMLElement {
 
   // Properties
   // Not reflected
-  // Array, Date, Object, null 
+  // Array, Date, Object, null
   get data() {
     return this._data;
   }
 
   set data( value ) {
     this._data = value;
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  set value( file ) {
+    this._value = file;
+
+    if( 'name' in this._value ) {
+      this.$img.src = URL.createObjectURL( this._value );        
+    } else if( 'length' in this._value ) {
+      this.$img.src = this._value;
+    } else {
+      this.$img.src = null;
+    }
+
+    this._render();
   }
 
   // Attributes
@@ -151,26 +204,6 @@ export default class AvocadoLink extends HTMLElement {
       this.removeAttribute( 'concealed' );
     }
   }
-  
-  get disabled() {
-    return this.hasAttribute( 'disabled' );
-  }
-
-  set disabled( value ) {
-    if( value !== null ) {
-      if( typeof value === 'boolean' ) {
-        value = value.toString();
-      }
-
-      if( value === 'false' ) {
-        this.removeAttribute( 'disabled' );
-      } else {
-        this.setAttribute( 'disabled', '' );
-      }
-    } else {
-      this.removeAttribute( 'disabled' );
-    }
-  }  
 
   get hidden() {
     return this.hasAttribute( 'hidden' );
@@ -192,42 +225,6 @@ export default class AvocadoLink extends HTMLElement {
     }
   }
 
-  get href() {
-    if( this.hasAttribute( 'href' ) ) {
-      return this.getAttribute( 'href' );
-    }
-
-    return null;
-  }
-
-  set href( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'href', value );
-    } else {
-      this.removeAttribute( 'href' );
-    }
-  }          
-
-  get inline() {
-    return this.hasAttribute( 'inline' );
-  }
-
-  set inline( value ) {
-    if( value !== null ) {
-      if( typeof value === 'boolean' ) {
-        value = value.toString();
-      }
-
-      if( value === 'false' ) {
-        this.removeAttribute( 'inline' );
-      } else {
-        this.setAttribute( 'inline', '' );
-      }
-    } else {
-      this.removeAttribute( 'inline' );
-    }
-  }  
-
   get label() {
     if( this.hasAttribute( 'label' ) ) {
       return this.getAttribute( 'label' );
@@ -242,24 +239,8 @@ export default class AvocadoLink extends HTMLElement {
     } else {
       this.removeAttribute( 'label' );
     }
-  }        
-
-  get target() {
-    if( this.hasAttribute( 'target' ) ) {
-      return this.getAttribute( 'target' );
-    }
-
-    return null;
   }
-
-  set target( value ) {
-    if( value !== null ) {
-      this.setAttribute( 'target', value );
-    } else {
-      this.removeAttribute( 'target' );
-    }
-  } 
-
+  
   get title() {
     if( this.hasAttribute( 'title' ) ) {
       return this.getAttribute( 'title' );
@@ -274,7 +255,7 @@ export default class AvocadoLink extends HTMLElement {
     } else {
       this.removeAttribute( 'title' );
     }
-  }      
+  }         
 }
 
-window.customElements.define( 'adc-link', AvocadoLink );
+window.customElements.define( 'adc-avatar', AvocadoAvatar );

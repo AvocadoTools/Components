@@ -53,7 +53,7 @@ export default class AvocadoSearch extends HTMLElement {
 
         input {
           background: none; 
-          background-color: #ffffff;
+          background-color: #f4f4f4;
           background-image: url( /img/controls/search.svg );
           background-position: left 12px center;          
           background-repeat: no-repeat;
@@ -63,6 +63,7 @@ export default class AvocadoSearch extends HTMLElement {
           border-radius: 0;
           box-sizing: border-box;          
           color: #161616;
+          cursor: pointer;
           font-family: 'IBM Plex Sans', sans-serif;
           font-size: 14px;
           font-weight: 400;
@@ -83,10 +84,15 @@ export default class AvocadoSearch extends HTMLElement {
           font-weight: 400;
         }
 
-        input:focus {
-          outline: solid 2px #0f62fe;
+        input:hover {
+          background-color: #e8e8e8;
         }
 
+        input:focus {
+          cursor: text;
+          outline: solid 2px #0f62fe;
+        }
+        
         input:focus ~ button:hover {
           top: 2px;
           right: 2px;
@@ -95,7 +101,7 @@ export default class AvocadoSearch extends HTMLElement {
         }
 
         :host( [light] ) input {
-          background-color: transparent;
+          background-color: #ffffff;
         }        
 
         :host( [size=lg] ) button {

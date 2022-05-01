@@ -159,7 +159,6 @@ export default class AvocadoDatePicker extends HTMLElement {
     // Elements
     this.$button = shadowRoot.querySelector( 'button' );
     this.$button.addEventListener( 'blur', ( evt ) => {
-      console.log( evt );
       if( evt.relatedTarget !== this.$calendar )
         this.$calendar.hidden = true;
     } );

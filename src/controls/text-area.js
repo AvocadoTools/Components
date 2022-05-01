@@ -52,10 +52,10 @@ export default class AvocadoTextArea extends HTMLElement {
 
         textarea {
           background: none;
+          background-color: #f4f4f4;                    
           background-position: right 16px center;
           background-repeat: no-repeat;
           background-size: 16px;
-          background-color: #ffffff;
           border: none;
           border-bottom: solid 1px #8d8d8d;
           border-radius: 0;
@@ -137,7 +137,7 @@ export default class AvocadoTextArea extends HTMLElement {
         }
 
         :host( [light] ) textarea {
-          background-color: transparent;
+          background-color: #ffffff;
         }
       </style>
       <div part="heading">

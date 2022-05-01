@@ -40,12 +40,8 @@ export default class AvocadoTab extends HTMLElement {
           text-align: left;
         }
 
-        button p {
-          font-family: 'IBM Plex Sans', sans-serif;
-          font-weight: 400;
-          margin: 0;
-          padding: 0;
-          text-rendering: optimizeLegibility;
+        button:first-of-type {
+          border-left: solid 1px transparent;          
         }
 
         button:hover {
@@ -56,10 +52,18 @@ export default class AvocadoTab extends HTMLElement {
           outline: solid 2px #005fcc;
         }
 
+        button p {
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-weight: 400;
+          margin: 0;
+          padding: 0;
+          text-rendering: optimizeLegibility;
+        }        
+
         button p:first-of-type {
           color: #161616;
           font-size: 14px;
-          font-weight: 600;
+          font-weight: 400;
         }
 
         button p:last-of-type {
@@ -77,7 +81,10 @@ export default class AvocadoTab extends HTMLElement {
           border-left: solid 1px transparent;
           border-top: solid 2px #0f62fe;
           color: #161616;
-          font-weight: 600;
+        }
+
+        :host( [selected] ) p:first-of-type {
+          font-weight: 600;          
         }
 
         :host( [disabled] ) button {
