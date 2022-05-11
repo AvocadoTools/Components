@@ -4,22 +4,6 @@ export default class AvocadoBox extends HTMLElement {
 
     const template = document.createElement( 'template' );
     template.innerHTML = /* template */ `
-      <style>
-        :host {
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: row;
-          position: relative;
-        }
-
-        :host( [concealed] ) {
-          visibility: hidden;
-        }
-
-        :host( [hidden] ) {
-          display: none;
-        }
-      </style>
       <slot></slot>
     `;
 

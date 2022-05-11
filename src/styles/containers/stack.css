@@ -1,0 +1,13 @@
+adc-stack {
+  box-sizing: border-box;
+  display: block;
+  position: relative;  
+}
+
+adc-stack[concealed] {
+  visibility: hidden;
+}
+
+adc-stack[hidden] {
+  display: none;
+}

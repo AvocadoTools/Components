@@ -1,0 +1,189 @@
+adc-input {
+  box-sizing: border-box;  
+  display: flex;
+  flex-direction: column;
+  position: relative;  
+}
+
+adc-input::part( error ) {
+  box-sizing: border-box;
+  color: #6f6f6f;
+  cursor: default;
+  flex-basis: 0;
+  flex-grow: 1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  padding: 5px 0 2px 0;
+  text-rendering: optimizeLegibility;
+  visibility: hidden;
+}
+
+adc-input[error]::part( error ) {
+  visibility: visible;
+}
+
+adc-input::part( heading ) {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 6px 0;
+}
+
+adc-input::part( hint ) {
+  box-sizing: border-box;
+  color: #6f6f6f;
+  cursor: default;
+  display: none;
+  flex-basis: 0;
+  flex-grow: 1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin: -4px 0 0 0;
+  padding: 0 0 6px 0;
+  text-rendering: optimizeLegibility;
+}
+
+adc-input[hint]::part( hint ) {
+  display: block;
+}
+
+adc-input::part( input ) {
+  background: none;
+  background-position: right 16px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-color: var( --input-background-color, #ffffff );
+  border: none;
+  border-bottom: solid 1px #8d8d8d;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #161616;
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  height: 40px;
+  outline-offset: -2px;          
+  padding: 0 16px 0 16px;
+  text-rendering: optimizeLegibility;          
+  width: 100%;
+}
+
+adc-input::part( input )::placeholder {
+  color: #a8a8a8;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}        
+
+adc-input::part( input ):focus {
+  outline: solid 2px #0f62fe;
+}
+
+adc-input[read-only]::part( input ) {
+  border-bottom: solid 1px transparent;
+  cursor: not-allowed;
+}
+
+adc-input[read-only]::part( input ):focus {
+  outline: solid 2px transparent;
+}
+
+adc-input::part( label ) {
+  box-sizing: border-box;
+  color: #393939;
+  cursor: default;
+  display: none;
+  flex-basis: 0;
+  flex-grow: 1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+}
+
+adc-input::part( reveal ) {
+  background: none;
+  background-image: url( /img/controls/password.svg );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  border: none;
+  bottom: 35px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: none;
+  height: 16px;
+  outline: solid 1px transparent;
+  outline-offset: -1px; 
+  position: absolute;         
+  right: 16px;
+  width: 16px;
+}
+
+adc-input::part( reveal ):focus {
+  outline: solid 1px #0f62fe;
+}
+
+adc-input::part( reveal ).reveal {
+  background-image: url( /img/controls/password-off.svg );
+}
+
+adc-input[label]::part( label ) {
+  display: block;
+}
+
+adc-input[light]::part( input ) {
+  background-color: transparent;
+}
+
+adc-input[password]::part( input ) {
+  background-position: right 48px center;
+}
+
+adc-input[size=sm]::part( input ) {
+  height: 32px;
+}
+
+adc-input[size=xl]::part( input ) {
+  height: 48px;
+}
+
+adc-input[invalid]::part( error ) {          
+  color: #da1e28;          
+}
+
+adc-input[password]::part( reveal ) {          
+  display: block;
+}
+
+adc-input[invalid]::part( input ) {
+  background-image: url( /img/controls/warning.svg );
+  outline: solid 2px #da1e28;          
+}
+
+adc-input[invalid]::part( input ):focus {          
+  outline: solid 2px #da1e28;
+}        
+
+adc-input[disabled]::part( hint ) {
+  color: #c6c6c6;
+}
+
+adc-input[disabled]::part( input ) {
+  border-bottom: solid 1px transparent;
+  color: #c6c6c6;          
+}
+
+adc-input[disabled]::part( input )::placeholder {
+  color: #c6c6c6;
+}
+
+adc-input[disabled]::part( label ) {
+  color: #c6c6c6;
+}
