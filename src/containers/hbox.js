@@ -1,4 +1,4 @@
-export default class AvocadoBox extends HTMLElement {
+export default class AvocadoHBox extends HTMLElement {
   constructor() {
     super();
 
@@ -197,4 +197,4 @@ export default class AvocadoBox extends HTMLElement {
   }     
 }
 
-window.customElements.define( 'adc-hbox', AvocadoBox );
+window.customElements.define( 'adc-hbox', AvocadoHBox );
