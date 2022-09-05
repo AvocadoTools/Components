@@ -127,6 +127,12 @@
       label="Date Picker Label">
     </adc-date-picker>
 
+    <adc-navigation-bar>
+      <adc-menu-item>Menu Item 1</adc-menu-item>
+      <adc-menu-item href="two" leaf>Menu Item 2</adc-menu-item>
+      <adc-menu-item href="three" leaf>Menu Item 3</adc-menu-item>
+    </adc-navigation-bar>
+
     <!-- Related: -->
     <!-- <adc-calendar></adc-calendar> -->
 
@@ -147,6 +153,15 @@
       list.labelFunction = ( value ) => {
         return value.first + ' ' + value.last;
       };
+
+      const two = document.querySelector( 'adc-menu-item[href=two]' );
+      two.addEventListener( 'click', () => {
+        alert( 'TWO' );
+      } );
+      const three = document.querySelector( 'adc-menu-item[href=three]' );
+      three.addEventListener( 'click', () => {
+        alert( 'THREE' );
+      } );      
     </script>
 
   </body>

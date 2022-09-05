@@ -1,5 +1,6 @@
 import AvocadoBox from './containers/box.js';
 import AvocadoHBox from './containers/hbox.js';
+import AvocadoNavigationBar from './containers/navigation-bar.js';
 import AvocadoStack from './containers/stack.js';
 import AvocadoTabNavigator from './containers/tab-navigator.js';
 import AvocadoVBox from './containers/vbox.js';
@@ -13,6 +14,7 @@ import AvocadoLabel from './controls/label.js';
 import AvocadoLink from './controls/link.js';
 import AvocadoList from './controls/list.js';
 import AvocadoInput from './controls/input.js'
+import AvocadoMenuItem from './controls/menu-item.js';
 import AvocadoSearch from './controls/search.js';
 import AvocadoSpacer from './controls/spacer.js';
 import AvocadoTab from './controls/tab.js';
